@@ -47,40 +47,38 @@ export const convert = (
 
   // 非同期変換が発生した場合は、進捗状況を表示する
   const { render, dispose } = useStatusBar();
-  try {
-    const render_ = () =>
-      render({
+  const render_ = () =>
+    render({
+      type: "text",
+      text: `URL: ${done}/${total} converted, ${failed} failed`,
+    });
+  render_();
+  return Promise.all(
+    nodes.map(async (node) => {
+      if (isString(node)) return node;
+      try {
+        const converted = await node[0];
+        done++;
+        return converted;
+      } catch (e: unknown) {
+        // 変換に失敗したときは、元の文字列を返す
+        console.error(e);
+        failed++;
+        return node[1];
+      } finally {
+        render_();
+      }
+    }),
+  ).then((fragments) => {
+    render(
+      { type: "check-circle" },
+      {
         type: "text",
         text: `URL: ${done}/${total} converted, ${failed} failed`,
-      });
-    render_();
-    return Promise.all(
-      nodes.map(async (node) => {
-        if (!Array.isArray(node)) return node;
-        try {
-          const converted = await node[0];
-          done++;
-          return converted;
-        } catch (e: unknown) {
-          // 変換に失敗したときは、元の文字列を返す
-          console.error(e);
-          failed++;
-          return node[1];
-        } finally {
-          render_();
-        }
-      }),
-    ).then((fragments) => {
-      render(
-        { type: "check-circle" },
-        {
-          type: "text",
-          text: `URL: ${done}/${total} converted, ${failed} failed`,
-        },
-      );
-      return fragments.join("");
-    });
-  } finally {
+      },
+    );
+    return fragments.join("");
+  }).finally(() => {
     setTimeout(dispose, 1000);
-  }
+  });
 };
