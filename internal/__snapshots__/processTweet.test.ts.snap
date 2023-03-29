@@ -12,7 +12,135 @@ snapshot[`processTweet() > (@FloodSocial) Test 3 1`] = `
       type: "plain",
     },
   ],
+  id: "1572401761092239362",
   posted: 2022-09-21T01:46:08.000Z,
+  replyCount: 0,
+  replyId: "1572401757548072960",
+  replyTo: {
+    author: {
+      name: "API demos",
+      screenName: "FloodSocial",
+    },
+    content: [
+      {
+        text: "Another test ",
+        type: "plain",
+      },
+      {
+        name: "the SnowBot",
+        screenName: "SnowBotDev",
+        type: "mention",
+      },
+      {
+        text: " ",
+        type: "plain",
+      },
+      {
+        text: "harvest",
+        type: "hashtag",
+      },
+      {
+        text: "    
+
+",
+        type: "plain",
+      },
+      {
+        type: "url",
+        url: URL {
+          hash: "",
+          host: "github.com",
+          hostname: "github.com",
+          href: "https://github.com/Twitterdev/snowbotdev",
+          origin: "https://github.com",
+          password: "",
+          pathname: "/Twitterdev/snowbotdev",
+          port: "",
+          protocol: "https:",
+          search: "",
+          username: "",
+        },
+      },
+      {
+        text: " ",
+        type: "plain",
+      },
+      {
+        media: [
+          {
+            type: "photo",
+            url: URL {
+              hash: "",
+              host: "pbs.twimg.com",
+              hostname: "pbs.twimg.com",
+              href: "https://pbs.twimg.com/media/FdJLD4yaEAIlR2C.jpg",
+              origin: "https://pbs.twimg.com",
+              password: "",
+              pathname: "/media/FdJLD4yaEAIlR2C.jpg",
+              port: "",
+              protocol: "https:",
+              search: "",
+              username: "",
+            },
+          },
+          {
+            type: "photo",
+            url: URL {
+              hash: "",
+              host: "pbs.twimg.com",
+              hostname: "pbs.twimg.com",
+              href: "https://pbs.twimg.com/media/FdJLD47agAYeaJM.jpg",
+              origin: "https://pbs.twimg.com",
+              password: "",
+              pathname: "/media/FdJLD47agAYeaJM.jpg",
+              port: "",
+              protocol: "https:",
+              search: "",
+              username: "",
+            },
+          },
+          {
+            type: "photo",
+            url: URL {
+              hash: "",
+              host: "pbs.twimg.com",
+              hostname: "pbs.twimg.com",
+              href: "https://pbs.twimg.com/media/FdJLD4xaUAEYeNS.jpg",
+              origin: "https://pbs.twimg.com",
+              password: "",
+              pathname: "/media/FdJLD4xaUAEYeNS.jpg",
+              port: "",
+              protocol: "https:",
+              search: "",
+              username: "",
+            },
+          },
+          {
+            type: "photo",
+            url: URL {
+              hash: "",
+              host: "pbs.twimg.com",
+              hostname: "pbs.twimg.com",
+              href: "https://pbs.twimg.com/media/FdJLD4waMAEcRU6.jpg",
+              origin: "https://pbs.twimg.com",
+              password: "",
+              pathname: "/media/FdJLD4waMAEcRU6.jpg",
+              port: "",
+              protocol: "https:",
+              search: "",
+              username: "",
+            },
+          },
+        ],
+        type: "media",
+      },
+    ],
+    id: "1572401757548072960",
+    posted: 2022-09-21T01:46:07.000Z,
+    replyCount: 1,
+    rootId: "1572401757548072960",
+  },
+  rootId: "1572401757548072960",
 }
 `;
 
@@ -136,7 +264,10 @@ snapshot[`processTweet() > (@FloodSocial) Another te 1`] = `
       type: "media",
     },
   ],
+  id: "1572401757548072960",
   posted: 2022-09-21T01:46:07.000Z,
+  replyCount: 1,
+  rootId: "1572401757548072960",
 }
 `;
 
@@ -152,7 +283,63 @@ snapshot[`processTweet() > (@FloodSocial) My kind of 1`] = `
       type: "plain",
     },
   ],
+  id: "1162409260627611648",
   posted: 2019-08-16T17:02:18.000Z,
+  quote: {
+    author: {
+      name: "snowman",
+      screenName: "snowman",
+    },
+    content: [
+      {
+        text: "2013 Colorado Flood rainfall accumulation in central Boulder, along with new followers of ",
+        type: "plain",
+      },
+      {
+        name: "Boulder OEM",
+        screenName: "BoulderOEM",
+        type: "mention",
+      },
+      {
+        text: " and ",
+        type: "plain",
+      },
+      {
+        name: "NWS Boulder",
+        screenName: "NWSBoulder",
+        type: "mention",
+      },
+      {
+        text: ". ",
+        type: "plain",
+      },
+      {
+        media: [
+          {
+            type: "animated_gif",
+            url: URL {
+              hash: "",
+              host: "video.twimg.com",
+              hostname: "video.twimg.com",
+              href: "https://video.twimg.com/tweet_video/ECGYaYxU8AAkbd6.mp4",
+              origin: "https://video.twimg.com",
+              password: "",
+              pathname: "/tweet_video/ECGYaYxU8AAkbd6.mp4",
+              port: "",
+              protocol: "https:",
+              search: "",
+              username: "",
+            },
+          },
+        ],
+        type: "media",
+      },
+    ],
+    id: "1162377768081879040",
+    posted: 2019-08-16T14:57:10.000Z,
+    replyCount: 0,
+  },
+  replyCount: 0,
 }
 `;
 
@@ -207,7 +394,9 @@ snapshot[`processTweet() > (@snowman) 2013 Color 1`] = `
       type: "media",
     },
   ],
+  id: "1162377768081879040",
   posted: 2019-08-16T14:57:10.000Z,
+  replyCount: 0,
 }
 `;
 
@@ -263,6 +452,8 @@ snapshot[`processTweet() > (@FloodSocial) It's time  1`] = `
       },
     },
   ],
+  id: "1168966000135606274",
   posted: 2019-09-03T19:16:27.000Z,
+  replyCount: 0,
 }
 `;
