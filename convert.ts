@@ -1,3 +1,5 @@
+import { isString } from "./is.ts";
+
 /** URL変換用関数
  *
  * @param url 変換するURL
@@ -17,13 +19,14 @@ export const convert = (
   let prev: URL | Promise<URL | string> = url;
   for (const middleware of middlewares) {
     const next: URL | string | Promise<URL | string> = prev instanceof Promise
-      ? prev.then((url) => typeof url === "string" ? url : middleware(url))
+      ? prev.then((url) => isString(url) ? url : middleware(url))
       : middleware(prev);
-    if (typeof next === "string") return next;
+    if (isString(next)) return next;
+    // 新しいURLに作り直す
     prev = next instanceof URL
       ? new URL(next)
       : next.then((converted) =>
-        typeof converted !== "string" ? new URL(converted) : converted
+        isString(converted) ? converted : new URL(converted)
       );
   }
   return prev instanceof Promise ? prev.then((url) => `${url}`) : `${url}`;

@@ -1,5 +1,6 @@
 import { useStatusBar } from "./deps/scrapbox.ts";
 import { convert as convertURL, Middleware } from "./convert.ts";
+import { isString } from "./is.ts";
 export type { Middleware };
 
 /** URLもしくはURLを0個以上含んだテキストを変換する
@@ -25,7 +26,7 @@ export const convert = (
     try {
       const converted = convertURL(new URL(node), ...middlewares);
       // 同期で変換された場合は、ここで成否をカウントする
-      if (typeof converted === "string") done++;
+      if (isString(converted)) done++;
       hasPromise = true;
       // wordsは変換失敗時のfallback用に保持しておく
       return [converted, node] as const;
