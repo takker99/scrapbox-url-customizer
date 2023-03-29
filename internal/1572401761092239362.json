@@ -1,0 +1,265 @@
+{
+  "__typename": "Tweet",
+  "in_reply_to_screen_name": "FloodSocial",
+  "in_reply_to_status_id_str": "1572401757548072960",
+  "in_reply_to_user_id_str": "944480690",
+  "lang": "en",
+  "favorite_count": 0,
+  "self_thread": { "id_str": "1572401757548072960" },
+  "created_at": "2022-09-21T01:46:08.000Z",
+  "display_text_range": [0, 6],
+  "entities": {
+    "hashtags": [],
+    "urls": [],
+    "user_mentions": [],
+    "symbols": []
+  },
+  "id_str": "1572401761092239362",
+  "text": "Test 3",
+  "user": {
+    "id_str": "944480690",
+    "name": "API demos",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1162409582213226497/wHPWq9eI_normal.jpg",
+    "screen_name": "FloodSocial",
+    "verified": false,
+    "is_blue_verified": false
+  },
+  "edit_control": {
+    "edit_tweet_ids": ["1572401761092239362"],
+    "editable_until_msecs": "1663726568000",
+    "is_edit_eligible": false,
+    "edits_remaining": "5"
+  },
+  "conversation_count": 0,
+  "news_action_type": "conversation",
+  "parent": {
+    "lang": "en",
+    "reply_count": 1,
+    "retweet_count": 0,
+    "favorite_count": 0,
+    "self_thread": { "id_str": "1572401757548072960" },
+    "possibly_sensitive": false,
+    "created_at": "2022-09-21T01:46:07.000Z",
+    "display_text_range": [0, 62],
+    "entities": {
+      "hashtags": [{ "indices": [25, 33], "text": "harvest" }],
+      "urls": [
+        {
+          "display_url": "GitHub.com/Twitterdev/sno…",
+          "expanded_url": "https://GitHub.com/Twitterdev/snowbotdev",
+          "indices": [39, 62],
+          "url": "https://t.co/2VFftpUWVg"
+        }
+      ],
+      "user_mentions": [
+        {
+          "id_str": "906948460078698496",
+          "indices": [13, 24],
+          "name": "the SnowBot",
+          "screen_name": "SnowBotDev"
+        }
+      ],
+      "symbols": [],
+      "media": [
+        {
+          "display_url": "pic.twitter.com/WXXf3jKeUa",
+          "expanded_url": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+          "indices": [63, 86],
+          "url": "https://t.co/WXXf3jKeUa"
+        }
+      ]
+    },
+    "id_str": "1572401757548072960",
+    "text": "Another test @SnowBotDev #harvest    \n\nhttps://t.co/2VFftpUWVg https://t.co/WXXf3jKeUa",
+    "user": {
+      "id_str": "944480690",
+      "name": "API demos",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1162409582213226497/wHPWq9eI_normal.jpg",
+      "screen_name": "FloodSocial",
+      "verified": false,
+      "is_blue_verified": false
+    },
+    "edit_control": {
+      "edit_tweet_ids": ["1572401757548072960"],
+      "editable_until_msecs": "1663726567000",
+      "is_edit_eligible": false,
+      "edits_remaining": "5"
+    },
+    "mediaDetails": [
+      {
+        "display_url": "pic.twitter.com/WXXf3jKeUa",
+        "expanded_url": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "ext_alt_text": "Making salsa",
+        "ext_media_availability": { "status": "Available" },
+        "indices": [63, 86],
+        "media_url_https": "https://pbs.twimg.com/media/FdJLD4yaEAIlR2C.jpg",
+        "original_info": {
+          "height": 2048,
+          "width": 2048,
+          "focus_rects": [
+            { "x": 0, "y": 901, "w": 2048, "h": 1147 },
+            { "x": 0, "y": 0, "w": 2048, "h": 2048 },
+            { "x": 0, "y": 0, "w": 1796, "h": 2048 },
+            { "x": 0, "y": 0, "w": 1024, "h": 2048 },
+            { "x": 0, "y": 0, "w": 2048, "h": 2048 }
+          ]
+        },
+        "sizes": {
+          "large": { "h": 2048, "resize": "fit", "w": 2048 },
+          "medium": { "h": 1200, "resize": "fit", "w": 1200 },
+          "small": { "h": 680, "resize": "fit", "w": 680 },
+          "thumb": { "h": 150, "resize": "crop", "w": 150 }
+        },
+        "type": "photo",
+        "url": "https://t.co/WXXf3jKeUa"
+      },
+      {
+        "display_url": "pic.twitter.com/WXXf3jKeUa",
+        "expanded_url": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "ext_alt_text": "Making pesto",
+        "ext_media_availability": { "status": "Available" },
+        "indices": [63, 86],
+        "media_url_https": "https://pbs.twimg.com/media/FdJLD47agAYeaJM.jpg",
+        "original_info": {
+          "height": 2048,
+          "width": 1536,
+          "focus_rects": [
+            { "x": 0, "y": 747, "w": 1536, "h": 860 },
+            { "x": 0, "y": 409, "w": 1536, "h": 1536 },
+            { "x": 0, "y": 297, "w": 1536, "h": 1751 },
+            { "x": 512, "y": 0, "w": 1024, "h": 2048 },
+            { "x": 0, "y": 0, "w": 1536, "h": 2048 }
+          ]
+        },
+        "sizes": {
+          "large": { "h": 2048, "resize": "fit", "w": 1536 },
+          "medium": { "h": 1200, "resize": "fit", "w": 900 },
+          "small": { "h": 680, "resize": "fit", "w": 510 },
+          "thumb": { "h": 150, "resize": "crop", "w": 150 }
+        },
+        "type": "photo",
+        "url": "https://t.co/WXXf3jKeUa"
+      },
+      {
+        "display_url": "pic.twitter.com/WXXf3jKeUa",
+        "expanded_url": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "ext_alt_text": "Making stuffed peppers",
+        "ext_media_availability": { "status": "Available" },
+        "indices": [63, 86],
+        "media_url_https": "https://pbs.twimg.com/media/FdJLD4xaUAEYeNS.jpg",
+        "original_info": {
+          "height": 2048,
+          "width": 1536,
+          "focus_rects": [
+            { "x": 0, "y": 747, "w": 1536, "h": 860 },
+            { "x": 0, "y": 409, "w": 1536, "h": 1536 },
+            { "x": 0, "y": 297, "w": 1536, "h": 1751 },
+            { "x": 51, "y": 0, "w": 1024, "h": 2048 },
+            { "x": 0, "y": 0, "w": 1536, "h": 2048 }
+          ]
+        },
+        "sizes": {
+          "large": { "h": 2048, "resize": "fit", "w": 1536 },
+          "medium": { "h": 1200, "resize": "fit", "w": 900 },
+          "small": { "h": 680, "resize": "fit", "w": 510 },
+          "thumb": { "h": 150, "resize": "crop", "w": 150 }
+        },
+        "type": "photo",
+        "url": "https://t.co/WXXf3jKeUa"
+      },
+      {
+        "display_url": "pic.twitter.com/WXXf3jKeUa",
+        "expanded_url": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "ext_alt_text": "Tomatoes",
+        "ext_media_availability": { "status": "Available" },
+        "indices": [63, 86],
+        "media_url_https": "https://pbs.twimg.com/media/FdJLD4waMAEcRU6.jpg",
+        "original_info": {
+          "height": 2048,
+          "width": 2048,
+          "focus_rects": [
+            { "x": 0, "y": 0, "w": 2048, "h": 1147 },
+            { "x": 0, "y": 0, "w": 2048, "h": 2048 },
+            { "x": 0, "y": 0, "w": 1796, "h": 2048 },
+            { "x": 0, "y": 0, "w": 1024, "h": 2048 },
+            { "x": 0, "y": 0, "w": 2048, "h": 2048 }
+          ]
+        },
+        "sizes": {
+          "large": { "h": 2048, "resize": "fit", "w": 2048 },
+          "medium": { "h": 1200, "resize": "fit", "w": 1200 },
+          "small": { "h": 680, "resize": "fit", "w": 680 },
+          "thumb": { "h": 150, "resize": "crop", "w": 150 }
+        },
+        "type": "photo",
+        "url": "https://t.co/WXXf3jKeUa"
+      }
+    ],
+    "photos": [
+      {
+        "accessibilityLabel": "Making salsa",
+        "backgroundColor": { "red": 204, "green": 214, "blue": 221 },
+        "cropCandidates": [
+          { "x": 0, "y": 901, "w": 2048, "h": 1147 },
+          { "x": 0, "y": 0, "w": 2048, "h": 2048 },
+          { "x": 0, "y": 0, "w": 1796, "h": 2048 },
+          { "x": 0, "y": 0, "w": 1024, "h": 2048 },
+          { "x": 0, "y": 0, "w": 2048, "h": 2048 }
+        ],
+        "expandedUrl": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "url": "https://pbs.twimg.com/media/FdJLD4yaEAIlR2C.jpg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "accessibilityLabel": "Making pesto",
+        "backgroundColor": { "red": 204, "green": 214, "blue": 221 },
+        "cropCandidates": [
+          { "x": 0, "y": 747, "w": 1536, "h": 860 },
+          { "x": 0, "y": 409, "w": 1536, "h": 1536 },
+          { "x": 0, "y": 297, "w": 1536, "h": 1751 },
+          { "x": 512, "y": 0, "w": 1024, "h": 2048 },
+          { "x": 0, "y": 0, "w": 1536, "h": 2048 }
+        ],
+        "expandedUrl": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "url": "https://pbs.twimg.com/media/FdJLD47agAYeaJM.jpg",
+        "width": 1536,
+        "height": 2048
+      },
+      {
+        "accessibilityLabel": "Making stuffed peppers",
+        "backgroundColor": { "red": 204, "green": 214, "blue": 221 },
+        "cropCandidates": [
+          { "x": 0, "y": 747, "w": 1536, "h": 860 },
+          { "x": 0, "y": 409, "w": 1536, "h": 1536 },
+          { "x": 0, "y": 297, "w": 1536, "h": 1751 },
+          { "x": 51, "y": 0, "w": 1024, "h": 2048 },
+          { "x": 0, "y": 0, "w": 1536, "h": 2048 }
+        ],
+        "expandedUrl": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "url": "https://pbs.twimg.com/media/FdJLD4xaUAEYeNS.jpg",
+        "width": 1536,
+        "height": 2048
+      },
+      {
+        "accessibilityLabel": "Tomatoes",
+        "backgroundColor": { "red": 204, "green": 214, "blue": 221 },
+        "cropCandidates": [
+          { "x": 0, "y": 0, "w": 2048, "h": 1147 },
+          { "x": 0, "y": 0, "w": 2048, "h": 2048 },
+          { "x": 0, "y": 0, "w": 1796, "h": 2048 },
+          { "x": 0, "y": 0, "w": 1024, "h": 2048 },
+          { "x": 0, "y": 0, "w": 2048, "h": 2048 }
+        ],
+        "expandedUrl": "https://twitter.com/FloodSocial/status/1572401757548072960/photo/1",
+        "url": "https://pbs.twimg.com/media/FdJLD4waMAEcRU6.jpg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "isEdited": false,
+    "isStaleEdit": false
+  },
+  "isEdited": false,
+  "isStaleEdit": false
+}

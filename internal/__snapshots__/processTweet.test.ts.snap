@@ -1,0 +1,268 @@
+export const snapshot = {};
+
+snapshot[`processTweet() > (@FloodSocial) Test 3 1`] = `
+{
+  author: {
+    name: "API demos",
+    screenName: "FloodSocial",
+  },
+  content: [
+    {
+      text: "Test 3",
+      type: "plain",
+    },
+  ],
+  posted: 2022-09-21T01:46:08.000Z,
+}
+`;
+
+snapshot[`processTweet() > (@FloodSocial) Another te 1`] = `
+{
+  author: {
+    name: "API demos",
+    screenName: "FloodSocial",
+  },
+  content: [
+    {
+      text: "Another test ",
+      type: "plain",
+    },
+    {
+      name: "the SnowBot",
+      screenName: "SnowBotDev",
+      type: "mention",
+    },
+    {
+      text: " ",
+      type: "plain",
+    },
+    {
+      text: "harvest",
+      type: "hashtag",
+    },
+    {
+      text: "    
+
+",
+      type: "plain",
+    },
+    {
+      type: "url",
+      url: URL {
+        hash: "",
+        host: "github.com",
+        hostname: "github.com",
+        href: "https://github.com/Twitterdev/snowbotdev",
+        origin: "https://github.com",
+        password: "",
+        pathname: "/Twitterdev/snowbotdev",
+        port: "",
+        protocol: "https:",
+        search: "",
+        username: "",
+      },
+    },
+    {
+      text: " ",
+      type: "plain",
+    },
+    {
+      media: [
+        {
+          type: "photo",
+          url: URL {
+            hash: "",
+            host: "pbs.twimg.com",
+            hostname: "pbs.twimg.com",
+            href: "https://pbs.twimg.com/media/FdJLD4yaEAIlR2C.jpg",
+            origin: "https://pbs.twimg.com",
+            password: "",
+            pathname: "/media/FdJLD4yaEAIlR2C.jpg",
+            port: "",
+            protocol: "https:",
+            search: "",
+            username: "",
+          },
+        },
+        {
+          type: "photo",
+          url: URL {
+            hash: "",
+            host: "pbs.twimg.com",
+            hostname: "pbs.twimg.com",
+            href: "https://pbs.twimg.com/media/FdJLD47agAYeaJM.jpg",
+            origin: "https://pbs.twimg.com",
+            password: "",
+            pathname: "/media/FdJLD47agAYeaJM.jpg",
+            port: "",
+            protocol: "https:",
+            search: "",
+            username: "",
+          },
+        },
+        {
+          type: "photo",
+          url: URL {
+            hash: "",
+            host: "pbs.twimg.com",
+            hostname: "pbs.twimg.com",
+            href: "https://pbs.twimg.com/media/FdJLD4xaUAEYeNS.jpg",
+            origin: "https://pbs.twimg.com",
+            password: "",
+            pathname: "/media/FdJLD4xaUAEYeNS.jpg",
+            port: "",
+            protocol: "https:",
+            search: "",
+            username: "",
+          },
+        },
+        {
+          type: "photo",
+          url: URL {
+            hash: "",
+            host: "pbs.twimg.com",
+            hostname: "pbs.twimg.com",
+            href: "https://pbs.twimg.com/media/FdJLD4waMAEcRU6.jpg",
+            origin: "https://pbs.twimg.com",
+            password: "",
+            pathname: "/media/FdJLD4waMAEcRU6.jpg",
+            port: "",
+            protocol: "https:",
+            search: "",
+            username: "",
+          },
+        },
+      ],
+      type: "media",
+    },
+  ],
+  posted: 2022-09-21T01:46:07.000Z,
+}
+`;
+
+snapshot[`processTweet() > (@FloodSocial) My kind of 1`] = `
+{
+  author: {
+    name: "API demos",
+    screenName: "FloodSocial",
+  },
+  content: [
+    {
+      text: "My kind of GIF",
+      type: "plain",
+    },
+  ],
+  posted: 2019-08-16T17:02:18.000Z,
+}
+`;
+
+snapshot[`processTweet() > (@snowman) 2013 Color 1`] = `
+{
+  author: {
+    name: "snowman",
+    screenName: "snowman",
+  },
+  content: [
+    {
+      text: "2013 Colorado Flood rainfall accumulation in central Boulder, along with new followers of ",
+      type: "plain",
+    },
+    {
+      name: "Boulder OEM",
+      screenName: "BoulderOEM",
+      type: "mention",
+    },
+    {
+      text: " and ",
+      type: "plain",
+    },
+    {
+      name: "NWS Boulder",
+      screenName: "NWSBoulder",
+      type: "mention",
+    },
+    {
+      text: ". ",
+      type: "plain",
+    },
+    {
+      media: [
+        {
+          type: "animated_gif",
+          url: URL {
+            hash: "",
+            host: "video.twimg.com",
+            hostname: "video.twimg.com",
+            href: "https://video.twimg.com/tweet_video/ECGYaYxU8AAkbd6.mp4",
+            origin: "https://video.twimg.com",
+            password: "",
+            pathname: "/tweet_video/ECGYaYxU8AAkbd6.mp4",
+            port: "",
+            protocol: "https:",
+            search: "",
+            username: "",
+          },
+        },
+      ],
+      type: "media",
+    },
+  ],
+  posted: 2019-08-16T14:57:10.000Z,
+}
+`;
+
+snapshot[`processTweet() > (@FloodSocial) It's time  1`] = `
+{
+  author: {
+    name: "API demos",
+    screenName: "FloodSocial",
+  },
+  content: [
+    {
+      text: "It's time for a video! Unusual Signal Suggests Neutron Star Destroyed by Black Hole 
+ 
+  ✨ Tweeting the NASA Astronomy Picture of the Day from an example Python script ✨",
+      type: "plain",
+    },
+    {
+      description: "Example code for downloading NASA APOD image and Tweeting it. - GitHub - jimmoffitt/tweet-nasa-photo: Example code for downloading NASA APOD image and Tweeting it.",
+      title: "GitHub - jimmoffitt/tweet-nasa-photo: Example code for downloading NASA APOD image and Tweeting it.",
+      type: "url",
+      url: URL {
+        hash: "",
+        host: "github.com",
+        hostname: "github.com",
+        href: "https://github.com/jimmoffitt/tweet-nasa-photo",
+        origin: "https://github.com",
+        password: "",
+        pathname: "/jimmoffitt/tweet-nasa-photo",
+        port: "",
+        protocol: "https:",
+        search: "",
+        username: "",
+      },
+    },
+    {
+      text: " ",
+      type: "plain",
+    },
+    {
+      type: "url",
+      url: URL {
+        hash: "",
+        host: "www.youtube.com",
+        hostname: "www.youtube.com",
+        href: "https://www.youtube.com/embed/bQ9qcR-KCsA?rel=0",
+        origin: "https://www.youtube.com",
+        password: "",
+        pathname: "/embed/bQ9qcR-KCsA",
+        port: "",
+        protocol: "https:",
+        search: "?rel=0",
+        username: "",
+      },
+    },
+  ],
+  posted: 2019-09-03T19:16:27.000Z,
+}
+`;
