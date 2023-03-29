@@ -1,6 +1,10 @@
 import { getTweet, RefTweet, Tweet } from "../internal/getTweet.ts";
 import { getTweetInfo, TweetInfo } from "../deps/scrapbox-rest.ts";
-import { ProcessedTweet, processTweet } from "../internal/processTweet.ts";
+import {
+  Media,
+  ProcessedTweet,
+  processTweet,
+} from "../internal/processTweet.ts";
 import { convertScrapboxURL } from "./convertScrapboxURL.ts";
 
 /** tweetを展開する */
@@ -74,9 +78,11 @@ const stringify = ({ content, author, id }: ProcessedTweet) => {
           const lines: string[] = [];
           let i = 1;
           for (; i < node.media.length; i += 2) {
-            lines.push(`[${node.media[i - 1].url}] [${node.media[i].url}]`);
+            lines.push(
+              `${makeEmbed(node.media[i - 1])} ${makeEmbed(node.media[i])}`,
+            );
           }
-          if (i === node.media.length) lines.push(`[${node.media[i - 1].url}]`);
+          if (i === node.media.length) lines.push(makeEmbed(node.media[i - 1]));
           return `\n${lines.join("\n")}\n`;
         }
         case "url":
@@ -85,6 +91,9 @@ const stringify = ({ content, author, id }: ProcessedTweet) => {
     }).join("").split("\n"),
   ];
 };
+
+const makeEmbed = (media: Media["media"][0]) =>
+  `[${media.url}#${media.type === "video" ? ".mp4" : ".jpg"}]`;
 
 // from https://scrapbox.io/asset/index.js
 const escapeForEmbed = (text: string) =>
