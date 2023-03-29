@@ -1,7 +1,11 @@
 // 説明の一部は https://developer.twitter.com/en/docs/twitter-api からコピペした
 import { HTTPError, makeHTTPError } from "../error.ts";
 import { Result } from "../deps/scrapbox-rest.ts";
-declare const GM_fetch: (typeof fetch) | undefined;
+declare global {
+  interface Window {
+    GM_fetch: (typeof fetch) | undefined;
+  }
+}
 
 /** tweetを取得する
  *
@@ -11,10 +15,11 @@ declare const GM_fetch: (typeof fetch) | undefined;
 export const getTweet = (
   tweetId: string,
 ): Promise<Result<Tweet, HTTPError>> | undefined => {
-  if (!GM_fetch) return;
+  if (!window.GM_fetch) return;
+  const fetch_ = window.GM_fetch;
 
   return (async () => {
-    const res = await GM_fetch(
+    const res = await fetch_(
       `https://cdn.syndication.twimg.com/tweet-result?id=${tweetId}`,
     );
     const error = makeHTTPError(res);

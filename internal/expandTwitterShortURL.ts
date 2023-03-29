@@ -1,6 +1,10 @@
 import { HTTPError, makeHTTPError } from "../error.ts";
 import { Result } from "../deps/scrapbox-rest.ts";
-declare const GM_fetch: (typeof fetch) | undefined;
+declare global {
+  interface Window {
+    GM_fetch: (typeof fetch) | undefined;
+  }
+}
 
 /** twitterのhttps://t.co/xxx 形式の短縮URLを展開する
  *
@@ -10,10 +14,11 @@ declare const GM_fetch: (typeof fetch) | undefined;
 export const expandTwitterShortURL = (
   shortId: string,
 ): Promise<Result<string, HTTPError>> | undefined => {
-  if (!GM_fetch) return;
+  if (!window.GM_fetch) return;
+  const fetch_ = window.GM_fetch;
 
   return (async () => {
-    const res = await GM_fetch(`https://t.co/${shortId}`);
+    const res = await fetch_(`https://t.co/${shortId}`);
     const error = makeHTTPError(res);
     if (error) return { ok: false, value: error };
     const dom = new DOMParser().parseFromString(await res.text(), "text/html");

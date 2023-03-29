@@ -1,6 +1,10 @@
 import { HTTPError, makeHTTPError } from "../error.ts";
 import { Result } from "../deps/scrapbox-rest.ts";
-declare const GM_fetch: (typeof fetch) | undefined;
+declare global {
+  interface Window {
+    GM_fetch: (typeof fetch) | undefined;
+  }
+}
 
 const charsetRegExp = /charset=([^;]+)/;
 
@@ -12,10 +16,11 @@ const charsetRegExp = /charset=([^;]+)/;
 export const getWebPage = (
   url: URL,
 ): Promise<Result<string, HTTPError>> | undefined => {
-  if (!GM_fetch) return;
+  if (!window.GM_fetch) return;
+  const fetch_ = window.GM_fetch;
 
   return (async () => {
-    const res = await GM_fetch(`${url}`);
+    const res = await fetch_(`${url}`);
     const error = makeHTTPError(res);
     if (error) return { ok: false, value: error };
 
