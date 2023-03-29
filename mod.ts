@@ -3,6 +3,7 @@ import { convert as convertURL, Middleware } from "./convert.ts";
 import { isString } from "./is.ts";
 export type { Middleware };
 export * from "./middlewares/mod.ts";
+export { convertURL };
 
 /** URLもしくはURLを0個以上含んだテキストを変換する
  *
