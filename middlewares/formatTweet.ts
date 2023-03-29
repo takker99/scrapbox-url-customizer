@@ -1,30 +1,42 @@
 import { getTweet, RefTweet, Tweet } from "../internal/getTweet.ts";
+import { getTweetInfo, TweetInfo } from "../deps/scrapbox-rest.ts";
 import { ProcessedTweet, processTweet } from "../internal/processTweet.ts";
 import { convertScrapboxURL } from "./convertScrapboxURL.ts";
 
 /** tweetを展開する */
 export const formatTweet = (
-  format: (tweet: Tweet, url: URL) => string = defaultFormat,
+  format: (tweet: Tweet | TweetInfo, url: URL) => string = defaultFormat,
 ): (url: URL) => Promise<string> | URL =>
 (url) => {
   // from https://scrapbox.io/asset/index.js
   const [, id] = url.href.match(
     /^https:\/\/(?:www\.|mobile\.|m\.|)twitter\.com\/[\w\d_]+\/(?:status|statuses)\/(\d+)/,
   ) ?? [];
-  if (id === undefined) return url;
-
-  const res = getTweet(id);
-  if (!res) return url;
+  if (!id) return url;
 
   return (async () => {
-    const result = await res;
+    const result = await (getTweet(id) ?? getTweetInfo(url.href));
     if (!result.ok) throw result.value;
     return format(result.value, url);
   })();
 };
 
 /** scrapbox.ioが使っているformatに、返信先と引用元tweetを加えたもの */
-const defaultFormat = (tweet: Tweet | RefTweet) => {
+const defaultFormat = (tweet: Tweet | RefTweet | TweetInfo, url: URL) => {
+  if ("images" in tweet) {
+    return [
+      `[${escapeForEmbed(tweet.screenName)}(@${
+        escapeForEmbed(tweet.userName)
+      }) ${url.origin}${url.pathname}]`,
+      ...tweet.description.split("\n").map((line) =>
+        `> ${escapeForEmbed(line)}`
+      ),
+      ...(tweet.images.length > 0
+        ? [`> ${tweet.images.map((image) => `[${image}]`)}`]
+        : []),
+    ].join("\n");
+  }
+
   const { quote, replyTo, ...processed } = processTweet(tweet);
 
   return [
