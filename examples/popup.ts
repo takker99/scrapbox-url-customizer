@@ -1,11 +1,11 @@
 import {
   convert,
   convertScrapboxURL,
+  expandShortURL,
   formatTweet,
   formatURL,
   formatWikipedia,
   Middleware,
-  redirectTco,
   redirectWikiwand,
 } from "../mod.ts";
 import { insertText, Scrapbox } from "../deps/scrapbox.ts";
@@ -14,7 +14,7 @@ declare const scrapbox: Scrapbox;
 // 毎回functionsを作るのは無駄なので、globalに保持しておく
 const middlewares: Middleware[] = [
   convertScrapboxURL(),
-  redirectTco,
+  expandShortURL,
   formatTweet(),
   redirectWikiwand,
   formatWikipedia,
