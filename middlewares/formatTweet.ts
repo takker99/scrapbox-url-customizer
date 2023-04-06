@@ -93,7 +93,7 @@ const stringify = ({ content, author, id }: ProcessedTweet) => {
 };
 
 const makeEmbed = (media: Media["media"][0]) =>
-  `[${media.url}#${media.type === "video" ? ".mp4" : ".jpg"}]`;
+  `[${media.url}#${media.type === "photo" ? ".jpg" : ".mp4"}]`;
 
 // from https://scrapbox.io/asset/index.js
 const escapeForEmbed = (text: string) =>
