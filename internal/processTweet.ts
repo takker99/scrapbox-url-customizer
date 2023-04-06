@@ -59,10 +59,10 @@ export const processTweet = (
       if (tweet.card && tweet.card?.url === url.url) {
         const { description, title } = tweet.card.binding_values;
         const key = "STRING";
-        if (description.type === key) {
+        if (description?.type === key) {
           entity.description = description.string_value;
         }
-        if (title.type === key) {
+        if (title?.type === key) {
           entity.title = title.string_value;
         }
       }
