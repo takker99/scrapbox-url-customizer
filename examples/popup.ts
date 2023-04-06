@@ -31,9 +31,12 @@ scrapbox.PopupMenu.addButton({
       // 文字列に違いがあるときのみ更新
       return text === promise ? undefined : promise;
     }
-    // 選択範囲を一旦消してから、変換後の文字列を貼り付ける
-    // 変換中にカーソルを動かされると、ずれた位置に挿入されるので注意
-    promise.then((converted) => insertText(converted));
-    return "";
+    // 選択範囲に変換後の文字列を上書きする
+    // 変換中に選択範囲が変わると、ずれた位置に挿入されるので注意
+    promise.then((converted) => {
+      if (text === converted) return;
+      return insertText(converted);
+    });
+    return undefined;
   },
 });
