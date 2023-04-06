@@ -6,6 +6,7 @@ import {
   formatURL,
   formatWikipedia,
   Middleware,
+  redirectGoogleSearch,
   redirectWikiwand,
 } from "../mod.ts";
 import { insertText, Scrapbox } from "../deps/scrapbox.ts";
@@ -13,29 +14,12 @@ declare const scrapbox: Scrapbox;
 
 // 毎回functionsを作るのは無駄なので、globalに保持しておく
 const middlewares: Middleware[] = [
+  redirectGoogleSearch,
   convertScrapboxURL(),
   expandShortURL,
   formatTweet(),
   redirectWikiwand,
   formatWikipedia,
-  // コードを画像にする
-  (url) => {
-    if (url.hostname === "raw.githubusercontent.com") {
-      return `[https://code2svg.vercel.app/svg/${url.origin}${url.pathname}#.svg ${url}]`;
-    }
-    if (url.hostname !== "github.com") return url;
-    const [user, repo, filepath] =
-      url.pathname.match(/^\/([^\\]+)\/([^\\]+)\/blob\/(.+)$/)?.slice?.(1) ??
-        [];
-    if (!user || !repo || !filepath) return url;
-    const [, start, end] = url.hash.match(/L(\d+)-L(\d+)/) ??
-      url.hash.match(/L(\d+)/) ?? [];
-    return `[https://code2svg.vercel.app/svg/${
-      start && end ? `L${start}-${end}/` : start ? `L${start}/` : ""
-    }https://raw.githubusercontent.com/${user}/${repo}/${filepath}#.svg ${url}]`;
-  },
-  // githubはそのまま返す
-  (url) => url.hostname === "github.com" ? `${url}` : url,
   formatURL(),
 ];
 
