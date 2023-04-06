@@ -48,10 +48,13 @@ export const convert = (
   // 非同期変換が発生した場合は、進捗状況を表示する
   const { render, dispose } = useStatusBar();
   const render_ = () =>
-    render({
-      type: "text",
-      text: `URL: ${done}/${total} converted, ${failed} failed`,
-    });
+    render(
+      { type: "spinner" },
+      {
+        type: "text",
+        text: `URL: ${done}/${total} converted, ${failed} failed`,
+      },
+    );
   render_();
   return Promise.all(
     nodes.map(async (node) => {
