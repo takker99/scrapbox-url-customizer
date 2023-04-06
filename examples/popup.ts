@@ -1,5 +1,6 @@
 import {
   convert,
+  convertGyazoURL,
   convertScrapboxURL,
   expandShortURL,
   formatTweet,
@@ -8,6 +9,7 @@ import {
   Middleware,
   redirectGoogleSearch,
   redirectWikiwand,
+  shortenAmazonURL,
 } from "../mod.ts";
 import { insertText, Scrapbox } from "../deps/scrapbox.ts";
 declare const scrapbox: Scrapbox;
@@ -15,10 +17,13 @@ declare const scrapbox: Scrapbox;
 // 毎回functionsを作るのは無駄なので、globalに保持しておく
 const middlewares: Middleware[] = [
   redirectGoogleSearch,
-  convertScrapboxURL(),
   expandShortURL,
-  formatTweet(),
+  redirectGoogleSearch,
   redirectWikiwand,
+  shortenAmazonURL,
+  convertScrapboxURL(),
+  convertGyazoURL,
+  formatTweet(),
   formatWikipedia,
   formatURL(),
 ];
