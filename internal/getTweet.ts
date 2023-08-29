@@ -20,7 +20,7 @@ export const getTweet = (
 
   return (async () => {
     const res = await fetch_(
-      `https://cdn.syndication.twimg.com/tweet-result?id=${tweetId}`,
+      `https://cdn.syndication.twimg.com/tweet-result?id=${tweetId}&token=x`,
     );
     const error = makeHTTPError(res);
     if (error) return { ok: false, value: error };
