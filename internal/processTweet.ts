@@ -1,4 +1,5 @@
 import type { RefTweet, Tweet } from "./getTweet.ts";
+import { unescapeHTML } from "./unescapeHTML.ts";
 
 /** APIから取得したTweet objectを、使いやすいよう変換して返す
  *
@@ -89,19 +90,21 @@ export const processTweet = (
     ) ?? [],
   ].sort((a, b) => a.indices[0] - b.indices[0]);
 
-  let offset = 0;
-  let text = tweet.text;
   const content: TweetNode[] = [];
-  for (const { indices, ...entity } of entities) {
-    const before = [...text].slice(0, indices[0] - offset).join("");
-    content.push({ type: "plain", text: before });
+  {
+    let offset = 0;
+    let text = tweet.text;
+    for (const { indices, ...entity } of entities) {
+      const before = [...text].slice(0, indices[0] - offset).join("");
+      content.push({ type: "plain", text: unescapeHTML(before) });
 
-    content.push(entity);
+      content.push(entity);
 
-    text = [...text].slice(indices[1] - offset).join("");
-    offset = indices[1];
+      text = [...text].slice(indices[1] - offset).join("");
+      offset = indices[1];
+    }
+    if (text) content.push({ type: "plain", text: unescapeHTML(text) });
   }
-  if (text) content.push({ type: "plain", text });
 
   const processed: ProcessedTweet = {
     id: tweet.id_str,

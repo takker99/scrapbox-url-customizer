@@ -6,6 +6,9 @@ import type { RefTweet, Tweet } from "./getTweet.ts";
 import tweet from "./1572401761092239362.json" assert { type: "json" };
 import tweetWithGIF from "./1162409260627611648.json" assert { type: "json" };
 import tweetWithOGP from "./1168966000135606274.json" assert { type: "json" };
+import tweetWithSpecialCharacters from "./1702965451712819281.json" assert {
+  type: "json",
+};
 
 Deno.test("processTweet()", async (t) => {
   for (
@@ -15,6 +18,7 @@ Deno.test("processTweet()", async (t) => {
       tweetWithGIF,
       tweetWithGIF.quoted_tweet,
       tweetWithOGP,
+      tweetWithSpecialCharacters,
     ]
   ) {
     await t.step(
