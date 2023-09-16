@@ -80,7 +80,7 @@ export const processTweet = (
               type: detail.type,
               url: new URL(
                 detail.video_info?.variants?.sort?.((a, b) =>
-                  b.bitrate - a.bitrate
+                  (b.bitrate ?? 0) - (a.bitrate ?? 0)
                 )?.[0].url ?? detail.media_url_https,
               ),
             }]
