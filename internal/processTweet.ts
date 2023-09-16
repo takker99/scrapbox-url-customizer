@@ -93,12 +93,12 @@ export const processTweet = (
   let text = tweet.text;
   const content: TweetNode[] = [];
   for (const { indices, ...entity } of entities) {
-    const before = text.slice(0, indices[0] - offset);
+    const before = [...text].slice(0, indices[0] - offset).join("");
     content.push({ type: "plain", text: before });
 
     content.push(entity);
 
-    text = text.slice(indices[1] - offset);
+    text = [...text].slice(indices[1] - offset).join("");
     offset = indices[1];
   }
   if (text) content.push({ type: "plain", text });
