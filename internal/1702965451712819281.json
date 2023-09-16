@@ -1,0 +1,39 @@
+{
+  "__typename": "Tweet",
+  "lang": "ja",
+  "favorite_count": 0,
+  "created_at": "2023-09-16T08:39:37.000Z",
+  "display_text_range": [
+    0,
+    116
+  ],
+  "entities": {
+    "hashtags": [],
+    "urls": [],
+    "user_mentions": [],
+    "symbols": []
+  },
+  "id_str": "1702965451712819281",
+  "text": "&amp;quot;\"\"\"クォーテーション&amp;amp;\"&amp;\"アンパサンド&amp;lt;\"&lt;\"小なり&amp;gt;\"&gt;\"大なり&amp;nbsp;\" \"空白&amp;copy;\"©\"コピーライト\n\nテスト",
+  "user": {
+    "id_str": "1422436845351149570",
+    "name": "BcS114",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1588816769770131456/w9GUIIuP_normal.jpg",
+    "screen_name": "YSurarin",
+    "verified": false,
+    "is_blue_verified": false,
+    "profile_image_shape": "Circle"
+  },
+  "edit_control": {
+    "edit_tweet_ids": [
+      "1702965451712819281"
+    ],
+    "editable_until_msecs": "1694857177000",
+    "is_edit_eligible": true,
+    "edits_remaining": "5"
+  },
+  "conversation_count": 0,
+  "news_action_type": "conversation",
+  "isEdited": false,
+  "isStaleEdit": false
+}

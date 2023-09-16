@@ -457,3 +457,23 @@ snapshot[`processTweet() > (@FloodSocial) It's time  1`] = `
   replyCount: 0,
 }
 `;
+
+snapshot[`processTweet() > (@YSurarin) &amp;quot; 1`] = `
+{
+  author: {
+    name: "BcS114",
+    screenName: "YSurarin",
+  },
+  content: [
+    {
+      text: '&quot;"""クォーテーション&amp;"&"アンパサンド&lt;"<"小なり&gt;">"大なり&nbsp;" "空白&copy;"©"コピーライト
+
+テスト',
+      type: "plain",
+    },
+  ],
+  id: "1702965451712819281",
+  posted: 2023-09-16T08:39:37.000Z,
+  replyCount: 0,
+}
+`;
