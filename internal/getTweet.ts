@@ -225,7 +225,7 @@ export interface MediaDetail extends UrlEntity {
   video_info?: {
     aspect_ratio: [number, number];
     duration_millis?: number;
-    variants: { bitrate: number; content_type: string; url: string }[];
+    variants: { bitrate?: number; content_type: string; url: string }[];
   };
 }
 
