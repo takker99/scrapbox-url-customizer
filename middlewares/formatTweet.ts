@@ -14,7 +14,7 @@ export const formatTweet = (
 (url) => {
   // from https://scrapbox.io/asset/index.js
   const [, id] = url.href.match(
-    /^https:\/\/(?:www\.|mobile\.|m\.|)twitter\.com\/[\w\d_]+\/(?:status|statuses)\/(\d+)/,
+    /^https:\/\/(?:(?:www\.|mobile\.|m\.)?twitter|x)\.com\/[\w\d_]+\/(?:status|statuses)\/(\d+)/,
   ) ?? [];
   if (!id) return url;
 
