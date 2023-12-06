@@ -32,8 +32,10 @@ const defaultFormat = (material: Document | string, url: URL) => {
   } else if (url.host.includes("github.io")) {
     return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title}]` : `${url}`;
   } else if (url.host === "github.com") {
-    const lastTwoSegments = url.href.split("/").slice(-2);
+    const lastTwoSegments = url.href.split("/").slice(3, 5);
     return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
+  } else if (url.href.includes("huggingface.co/papers")) {
+    return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/Paper page -\s/, "")}]` : `${url}`;
   }
   return title ? `[${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${title} ${url}]` : `${url}`;
 };
