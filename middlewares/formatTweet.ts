@@ -13,9 +13,8 @@ export const formatTweet = (
 ): (url: URL) => Promise<string> | URL =>
 (url) => {
   // from https://scrapbox.io/asset/index.js
-  const [, id] = url.href.match(
-    /^https:\/\/(?:(?:www\.|mobile\.|m\.)?twitter|x)\.com\/[\w\d_]+\/(?:status|statuses)\/(\d+)/,
-  ) ?? [];
+  const match = url.href.match(/^https:\/\/(?:www\.|mobile\.|m\.|)((vx|fx)?twitter|(fixup)?x)\.com\/[\w\d_]+\/(?:status|statuses)\/(\d+)/);
+  const id = match ? match.slice(-1)[0] : undefined;
   if (!id) return url;
 
   return (async () => {
