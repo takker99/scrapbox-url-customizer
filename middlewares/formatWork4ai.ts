@@ -18,8 +18,11 @@ declare const scrapbox: Scrapbox;
 
 export const formatWork4ai =
   (format: (material: Document | string, url: URL) => string = defaultFormat): ((url: URL) => Promise<string>) =>
-  async (url) =>
-    format(await getDocumentOrTitle(url), url);
+  async (url) =>{if (url.host === "github.com") {
+      const lastTwoSegments = url.href.split("/").slice(-2);
+      return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
+      }return format(await getDocumentOrTitle(url), url);
+    }
 
 const defaultFormat = (material: Document | string, url: URL) => {
   const title = (isString(material) ? material : material.title)
@@ -28,15 +31,18 @@ const defaultFormat = (material: Document | string, url: URL) => {
     .replaceAll("]", "］");
   if (scrapbox.Project.name !== "work4ai") return `${url}`;
   if (url.host === "arxiv.org") {
-    return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/\［[\d\.]+\］\s/, "")}]` : `${url}`;
-  } else if (url.host.includes("github.io")) {
-    return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title}]` : `${url}`;
-  } else if (url.host === "github.com") {
-    const lastTwoSegments = url.href.split("/").slice(3, 5);
-    return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
-  } else if (url.href.includes("huggingface.co/papers")) {
-    return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/Paper page -\s/, "")}]` : `${url}`;
-  }
+     return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/\［[\d\.]+\］\s/, "")}]` : `${url}`;
+   } else if (url.host.includes("github.io")) {
+     return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title}]` : `${url}`;
+   } else if (url.host === "github.com") {
+     const lastTwoSegments = url.href.split("/").slice(-2);
+     return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
+   } else if (url.includes("huggingface.co/papers")) {
+     return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/Paper page -\s/, "")}]` : `${url}`;
+   } else if (url.host === "huggingface.co") {
+     const lastTwoSegments = url.href.split("/").slice(-2);
+     return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
+   }
   return title ? `[${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${title} ${url}]` : `${url}`;
 };
 
