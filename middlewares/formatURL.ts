@@ -1,7 +1,9 @@
 import { getWebPageTitle, Project } from "../deps/scrapbox-rest.ts";
 import { getWebPage } from "../internal/getWebPage.ts";
 import { isString } from "../is.ts";
-
+import { Scrapbox } from "../deps/scrapbox.ts";
+import { expandTwitterShortURL } from "../internal/expandTwitterShortURL.ts";
+declare const scrapbox: Scrapbox;
 /** URL先のデータを使って外部リンク記法にする関数を作る
  *
  * 任意のURLを受け付ける
@@ -14,17 +16,42 @@ import { isString } from "../is.ts";
  */
 export const formatURL = (
   format: (material: Document | string, url: URL) => string = defaultFormat,
-): (url: URL) => Promise<string> =>
-async (url) => format(await getDocumentOrTitle(url), url);
+): (url: URL) => Promise<string> => {
+  const ProjectName = scrapbox.Project.name
+  const MyProjects = ["work4ai", "study-wogikaze"]
+  if (MyProjects.includes(ProjectName)) {
+    if (url.host === "github.com") {
+      const lastTwoSegments = url.href.split("/").slice(-2);
+      return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
+    } else if (url.host === "huggingface.co" && !url.href.includes("huggingface.co/papers")) {
+      const lastTwoSegments = url.href.split("/").slice(-2);
+      return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
+    }
+  }
+  return async (url) => format(await getDocumentOrTitle(url), url);
+}
 
 const defaultFormat = (material: Document | string, url: URL) => {
   const title = (isString(material) ? material : material.title)
     .replace(/\s/g, " ") // スペースと改行を全て半角スペースにする
     .replaceAll("[", "［")
     .replaceAll("]", "］");
+  const ProjectName = scrapbox.Project.name
+  const MyProjects = ["work4ai", "study-wogikaze"]
+  if (MyProjects.includes(ProjectName)) {
+    if (url.host === "arxiv.org") {
+      return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/\［[\d\.]+\］\s/, "")}]` : `${url}`;
+    } else if (url.host.includes("github.io")) {
+      return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title}]` : `${url}`;
+    } else if (url.includes("huggingface.co/papers")) {
+      return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/Paper page -\s/, "")}]` : `${url}`;
+    } else {
+      return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}]${title.split("|")[0]}` : `${url}`;
+    }
+    return title ? `[${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${title} ${url}]` : `${url}`;
+  }
   return title
-    ? `[${
-      url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""
+    ? `[${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""
     }${title} ${url}]`
     : `${url}`;
 };
