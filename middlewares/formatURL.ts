@@ -19,7 +19,7 @@ export const formatURL = (
 ): (url: URL) => Promise<string> => {
   return async (url) => {
     const ProjectName = scrapbox.Project.name
-    const MyProjects = ["work4ai", "study-wogikaze"]
+    const MyProjects = ["work4ai", "wogikaze-study"]
     if (MyProjects.includes(ProjectName)) {
       if (url.host === "github.com") {
         const lastTwoSegments = url.href.split("/").slice(-2);
@@ -29,7 +29,7 @@ export const formatURL = (
         return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
       }
     }
-    format(await getDocumentOrTitle(url), url);
+    return format(await getDocumentOrTitle(url), url);
   }
 }
 
@@ -39,7 +39,7 @@ const defaultFormat = (material: Document | string, url: URL) => {
     .replaceAll("[", "［")
     .replaceAll("]", "］");
   const ProjectName = scrapbox.Project.name
-  const MyProjects = ["work4ai", "study-wogikaze"]
+  const MyProjects = ["work4ai", "wogikaze-study"]
   if (MyProjects.includes(ProjectName)) {
     if (url.host === "arxiv.org") {
       return title ? `[. ${url.hash ? `${decodeURIComponent(url.hash.slice(1))} | ` : ""}${url}][${title.replace(/\［[\d\.]+\］\s/, "")}]` : `${url}`;
