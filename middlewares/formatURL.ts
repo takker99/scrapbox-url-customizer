@@ -1,4 +1,4 @@
-import { getWebPageTitle } from "../deps/scrapbox-rest.ts";
+import { getWebPageTitle, Project } from "../deps/scrapbox-rest.ts";
 import { getWebPage } from "../internal/getWebPage.ts";
 import { isString } from "../is.ts";
 
