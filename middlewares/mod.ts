@@ -4,7 +4,6 @@ export * from "./formatWikipedia.ts";
 export * from "./redirectWikiwand.ts";
 export * from "./redirectGoogleSearch.ts";
 export * from "./formatURL.ts";
-export * from "./formatWork4ai.ts";
 export * from "./shortenAmazonURL.ts";
 export * from "./convertScrapboxURL.ts";
 export * from "./convertGyazoURL.ts";

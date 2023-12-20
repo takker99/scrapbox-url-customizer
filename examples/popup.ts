@@ -6,7 +6,6 @@ import {
   formatTweet,
   formatURL,
   formatWikipedia,
-  formatWork4ai,
   Middleware,
   redirectGoogleSearch,
   redirectWikiwand,
@@ -26,7 +25,6 @@ const middlewares: Middleware[] = [
   convertGyazoURL,
   formatTweet(),
   formatWikipedia,
-  formatWork4ai(),
   formatURL(),
 ];
 
