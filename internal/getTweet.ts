@@ -15,7 +15,9 @@ declare global {
 export const getTweet = (
   tweetId: string,
 ): Promise<Result<Tweet, HTTPError>> | undefined => {
+  // deno-lint-ignore no-window
   if (!window.GM_fetch) return;
+  // deno-lint-ignore no-window
   const fetch_ = window.GM_fetch;
 
   return (async () => {
