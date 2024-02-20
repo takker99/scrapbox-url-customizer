@@ -3,10 +3,10 @@
 import { assertSnapshot } from "../deps/testing.ts";
 import { processTweet } from "./processTweet.ts";
 import type { RefTweet, Tweet } from "./getTweet.ts";
-import tweet from "./1572401761092239362.json" assert { type: "json" };
-import tweetWithGIF from "./1162409260627611648.json" assert { type: "json" };
-import tweetWithOGP from "./1168966000135606274.json" assert { type: "json" };
-import tweetWithSpecialCharacters from "./1702965451712819281.json" assert {
+import tweet from "./1572401761092239362.json" with { type: "json" };
+import tweetWithGIF from "./1162409260627611648.json" with { type: "json" };
+import tweetWithOGP from "./1168966000135606274.json" with { type: "json" };
+import tweetWithSpecialCharacters from "./1702965451712819281.json" with {
   type: "json",
 };
 
