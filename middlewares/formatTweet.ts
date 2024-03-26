@@ -38,9 +38,7 @@ const defaultFormat = async (
 ): Promise<string> => {
   if ("images" in tweet) {
     return [
-      `[${escapeForEmbed(tweet.screenName)}(@${
-        escapeForEmbed(tweet.userName)
-      }) ${url.origin}${url.pathname}]`,
+      `[${escapeForEmbed(tweet.screenName)} ${url.origin}${url.pathname}]`,
       ...tweet.description.split("\n").map((line) =>
         `> ${escapeForEmbed(line)}`
       ),

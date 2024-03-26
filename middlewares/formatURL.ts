@@ -24,7 +24,7 @@ export const formatURL = (
       if (url.host === "github.com") {
         const lastTwoSegments = url.href.split("/").slice(-2);
         return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
-      } else if (url.host === "huggingface.co" && !url.href.includes("huggingface.co/papers")) {
+      } else if (url.host === "huggingface.co" && !url.href.includes("huggingface.co/papers") && !url.href.includes("huggingface.co/blog")) {
         const lastTwoSegments = url.href.split("/").slice(-2);
         return `[. ${url}][${lastTwoSegments[0]}]/[${lastTwoSegments[1]}]`;
       }
