@@ -1,4 +1,5 @@
 import { getTweet, RefTweet, Tweet } from "../internal/getTweet.ts";
+import { uploadTwimg } from "../internal/uploadTwimg.ts";
 import { getTweetInfo, TweetInfo } from "../deps/scrapbox-rest.ts";
 import {
   Media,
@@ -7,9 +8,15 @@ import {
 } from "../internal/processTweet.ts";
 import { convertScrapboxURL } from "./convertScrapboxURL.ts";
 
+/** tweetをscrapboxに書き込む際の変換format */
+export type TweetFormatter = (
+  tweet: Tweet | TweetInfo,
+  url: URL,
+) => Promise<string>;
+
 /** tweetを展開する */
 export const formatTweet = (
-  format: (tweet: Tweet | TweetInfo, url: URL) => string = defaultFormat,
+  format: TweetFormatter = defaultFormat,
 ): (url: URL) => Promise<string> | URL =>
 (url) => {
   // from https://scrapbox.io/asset/index.js
@@ -25,7 +32,10 @@ export const formatTweet = (
 };
 
 /** scrapbox.ioが使っているformatに、返信先と引用元tweetを加えたもの */
-const defaultFormat = (tweet: Tweet | RefTweet | TweetInfo, url: URL) => {
+const defaultFormat = async (
+  tweet: Tweet | RefTweet | TweetInfo,
+  url: URL,
+): Promise<string> => {
   if ("images" in tweet) {
     return [
       `[${escapeForEmbed(tweet.screenName)}(@${
@@ -45,25 +55,25 @@ const defaultFormat = (tweet: Tweet | RefTweet | TweetInfo, url: URL) => {
   return [
     ...(replyTo
       ? [
-        ...stringify(replyTo).map((line) => ` > ${line}`),
+        ...(await stringify(replyTo)).map((line) => ` > ${line}`),
         ...(replyTo.quote
-          ? stringify(replyTo.quote).map((line) => `  > ${line}`)
+          ? (await stringify(replyTo.quote)).map((line) => `  > ${line}`)
           : []),
       ]
       : []),
-    ...stringify(processed).map((line) => `> ${line}`),
-    ...(quote ? stringify(quote).map((line) => `> > ${line}`) : []),
+    ...(await stringify(processed)).map((line) => `> ${line}`),
+    ...(quote ? (await stringify(quote)).map((line) => `> > ${line}`) : []),
   ].join("\n");
 };
 
-const stringify = ({ content, author, id }: ProcessedTweet) => {
-  const url = `https://twitter.com/${author.screenName}/status/${id}`;
+const stringify = async ({ content, author, id }: ProcessedTweet) => {
+  const url = new URL(`https://twitter.com/${author.screenName}/status/${id}`);
 
   return [
     `[${escapeForEmbed(author.name)}(@${
       escapeForEmbed(author.screenName)
     }) ${url}]`,
-    ...content.map((node) => {
+    ...(await Promise.all(content.map(async (node) => {
       switch (node.type) {
         case "plain":
           return node.text;
@@ -78,27 +88,30 @@ const stringify = ({ content, author, id }: ProcessedTweet) => {
           let i = 1;
           for (; i < node.media.length; i += 2) {
             lines.push(
-              `${makeEmbed(node.media[i - 1])} ${makeEmbed(node.media[i])}`,
+              `${await makeEmbed(node.media[i - 1], url)} ${await makeEmbed(
+                node.media[i],
+                url,
+              )}`,
             );
           }
-          if (i === node.media.length) lines.push(makeEmbed(node.media[i - 1]));
+          if (i === node.media.length) {
+            lines.push(await makeEmbed(node.media[i - 1], url));
+          }
           return `\n${lines.join("\n")}\n`;
         }
         case "url":
           return `${convertScrapboxURL()(node.url)} `;
       }
-    }).join("").split("\n"),
+    }))).join("").split("\n"),
   ];
 };
 
-const makeEmbed = (media: Media["media"][0]) =>
-  `[${media.url}${
-    media.type === "photo"
-      ? /\.(?:png|jpe?g|gif|svg)$/.test(`${media.url}`) ? "" : "#.jpg"
-      : /\.(?:mp4|webm)$/.test(`${media.url}`)
-      ? ""
-      : "#.mp4"
-  }]`;
+const makeEmbed = async (media: Media["media"][0], tweetURL: URL) =>
+  media.type === "photo"
+    ? `${media.url}`.endsWith(".svg")
+      ? `[${media.url}]`
+      : `[${(await uploadTwimg(media.url, tweetURL, "")) ?? media.url}]`
+    : `[${media.url}${/\.(?:mp4|webm)$/.test(`${media.url}`) ? "" : "#.mp4"}]`;
 
 // from https://scrapbox.io/asset/index.js
 const escapeForEmbed = (text: string) =>

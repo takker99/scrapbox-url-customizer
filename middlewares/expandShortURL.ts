@@ -32,8 +32,10 @@ export const expandShortURL = (url: URL): Promise<URL> | URL => {
       "w.wiki",
     ].includes(
       url.hostname,
+      // deno-lint-ignore no-window
     ) && window.GM_fetch
   ) {
+    // deno-lint-ignore no-window
     return window.GM_fetch(url).then((res) => res.ok ? new URL(res.url) : url);
   }
 
