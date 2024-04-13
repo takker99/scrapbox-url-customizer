@@ -39,9 +39,7 @@ const defaultFormat = async (
 ): Promise<string> => {
   if ("images" in tweet) {
     return [
-      `[${escapeForEmbed(tweet.screenName)}(@${
-        escapeForEmbed(tweet.userName)
-      }) ${url.origin}${url.pathname}]`,
+      `[@${escapeForEmbed(tweet.screenName)} ${url.origin}${url.pathname}]`,
       ...tweet.description.split("\n").map((line) =>
         `> ${escapeForEmbed(line)}`
       ),
@@ -71,9 +69,7 @@ const stringify = async ({ content, author, id }: ProcessedTweet) => {
   const url = new URL(`https://twitter.com/${author.screenName}/status/${id}`);
 
   return [
-    `[${escapeForEmbed(author.name)}(@${
-      escapeForEmbed(author.screenName)
-    }) ${url}]`,
+    `[@${escapeForEmbed(author.screenName)} ${url}]`,
     ...(await Promise.all(content.map(async (node) => {
       switch (node.type) {
         case "plain":
