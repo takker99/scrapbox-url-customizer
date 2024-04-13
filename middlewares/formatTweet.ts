@@ -42,7 +42,7 @@ const defaultFormat = async (
       `> [@${escapeForEmbed(tweet.screenName)} ${url.origin}${url.pathname}]`,
       ...(tweet.description?.split?.("\n")?.map?.((line) =>
         `> ${escapeForEmbed(line)}`
-      ) ?? ["[/ no description provided]"]),
+      ) ?? ["> [/ no description provided]"]),
       ...(tweet.images.length > 0
         ? [`> ${tweet.images.map((image) => `[${image}]`)}`]
         : []),
