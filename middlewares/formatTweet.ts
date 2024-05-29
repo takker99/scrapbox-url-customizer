@@ -1,12 +1,14 @@
 import { getTweet, RefTweet, Tweet } from "../internal/getTweet.ts";
 import { uploadTwimg } from "../internal/uploadTwimg.ts";
-import { getTweetInfo, TweetInfo } from "../deps/scrapbox-rest.ts";
+import { getProject, getTweetInfo, TweetInfo } from "../deps/scrapbox-rest.ts";
 import {
   Media,
   ProcessedTweet,
   processTweet,
 } from "../internal/processTweet.ts";
 import { convertScrapboxURL } from "./convertScrapboxURL.ts";
+import { Scrapbox } from "../deps/scrapbox.ts";
+declare const scrapbox: Scrapbox;
 
 /** tweetをscrapboxに書き込む際の変換format */
 export type TweetFormatter = (
@@ -103,12 +105,20 @@ const stringify = async ({ content, author, id }: ProcessedTweet) => {
   ];
 };
 
+let projectId = "";
+const getProjectId = async () => {
+  if (projectId) return projectId;
+  const result = await getProject(scrapbox.Project.name);
+  if (!result.ok) throw new Error(result.value.name);
+  projectId = result.value.id;
+  return projectId;
+};
+
 const makeEmbed = async (media: Media["media"][0], tweetURL: URL) =>
-  media.type === "photo"
-    ? `${media.url}`.endsWith(".svg")
-      ? `[${media.url}]`
-      : `[${(await uploadTwimg(media.url, tweetURL, "")) ?? media.url}]`
-    : `[${media.url}${/\.(?:mp4|webm)$/.test(`${media.url}`) ? "" : "#.mp4"}]`;
+  `[${
+    (await uploadTwimg(media.url, tweetURL, await getProjectId(), "")) ??
+      media.url
+  }]`;
 
 // from https://scrapbox.io/asset/index.js
 const escapeForEmbed = (text: string) =>
