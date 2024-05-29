@@ -1,5 +1,9 @@
 import { upload } from "../deps/deno-gyazo.ts";
-import { getGyazoToken } from "../deps/scrapbox-rest.ts";
+import { getGyazoToken, uploadToGCS } from "../deps/scrapbox-rest.ts";
+/** TamperMonkeyから注入された函数
+ *
+ * このmoduleの函数は、GM_fetchがある条件でしか使わないので、`undefined`の可能性を排除している
+ */
 declare const GM_fetch: typeof fetch;
 
 let token = "";
@@ -9,12 +13,32 @@ const cache = new Map<string, URL>();
 export const uploadTwimg = async (
   url: URL,
   tweetURL: URL,
+  projectId: string,
   description: string,
 ): Promise<URL | undefined> => {
+  const cachedURL = cache.get(url.href);
+  if (cachedURL) return cachedURL;
+  if (url.hostname === "video.twimg.com" || `${url}`.endsWith(".svg")) {
+    // upload the video to scrapbox.io
+    const res = await GM_fetch(url);
+    if (!res.ok) return;
+    const type = res.headers.get("content-type")?.split?.(";")?.[0] ??
+        `${url}`.endsWith(".mp4")
+      ? "video/mp4"
+      : "video/webm";
+    const result = await uploadToGCS(
+      new File([await res.blob()], description, { type }),
+      projectId,
+    );
+    if (!result.ok) throw Error(result.value.name);
+    const fileURL = new URL(result.value.embedUrl);
+
+    cache.set(url.href, fileURL);
+
+    return fileURL;
+  }
   if (url.hostname !== "pbs.twimg.com") return;
   if (!url.pathname.startsWith("/media")) return;
-  const cachedGyazoURL = cache.get(url.href);
-  if (cachedGyazoURL) return cachedGyazoURL;
 
   if (!checked) {
     const result = await getGyazoToken();
