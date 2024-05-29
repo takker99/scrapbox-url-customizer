@@ -170,7 +170,7 @@ export type TweetNode =
   | SymbolTag
   | UrlNode
   | Mention
-  | Media;
+  | MediaNode;
 
 export interface Hashtag {
   type: "hashtag";
@@ -188,9 +188,13 @@ export interface UrlNode {
   description?: string;
 }
 
-export interface Media {
+export interface MediaNode {
   type: "media";
-  media: { type: "photo" | "video" | "animated_gif"; url: URL }[];
+  media: Media[];
+}
+export interface Media {
+  type: "photo" | "video" | "animated_gif";
+  url: URL;
 }
 
 export interface Mention {

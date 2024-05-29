@@ -10,9 +10,15 @@ import { convertScrapboxURL } from "./convertScrapboxURL.ts";
 import { Scrapbox } from "../deps/scrapbox.ts";
 declare const scrapbox: Scrapbox;
 
+export type { Media, ProcessedTweet, Tweet, TweetInfo };
+export interface TweetViaProxy extends TweetInfo {
+  /** tweet id */
+  id: string;
+}
+
 /** tweetをscrapboxに書き込む際の変換format */
 export type TweetFormatter = (
-  tweet: Tweet | TweetInfo,
+  tweet: Tweet | TweetViaProxy,
   url: URL,
 ) => Promise<string>;
 
@@ -30,15 +36,52 @@ export const formatTweet = (
   return (async () => {
     const result = await (getTweet(id) ?? getTweetInfo(url.href));
     if (!result.ok) throw result.value;
-    return format(result.value, url);
+    return format(
+      "images" in result.value ? { ...result.value, id } : result.value,
+      url,
+    );
   })();
 };
 
 /** scrapbox.ioが使っているformatに、返信先と引用元tweetを加えたもの */
 const defaultFormat = async (
-  tweet: Tweet | RefTweet | TweetInfo,
-  url: URL,
+  tweet: Tweet | RefTweet | TweetViaProxy,
 ): Promise<string> => {
+  if ("images" in tweet) return stringify(tweet);
+
+  const { quote, replyTo, ...processed } = processTweet(tweet);
+
+  return [
+    ...(replyTo
+      ? [
+        ...(await stringify(replyTo)).split("\n").map((line) => ` > ${line}`),
+        ...(replyTo.quote
+          ? (await stringify(replyTo.quote)).split("\n").map((line) =>
+            `  > ${line}`
+          )
+          : []),
+      ]
+      : []),
+    ...(await stringify(processed)).split("\n").map((line) => `> ${line}`),
+    ...(quote
+      ? (await stringify(quote)).split("\n").map((line) => `> > ${line}`)
+      : []),
+  ].join("\n");
+};
+
+/** Converts a processed tweet or a tweet via /api/embed-text/twitter into a formatted string.
+ *
+ * @param tweet The processed tweet or tweet via proxy object.
+ * @returns A promise that resolves to the formatted string.
+ */
+export const stringify = async (
+  tweet: ProcessedTweet | TweetViaProxy,
+): Promise<string> => {
+  const url = new URL(
+    `https://twitter.com/${
+      "author" in tweet ? tweet.author.screenName : tweet.screenName
+    }/status/${tweet.id}`,
+  );
   if ("images" in tweet) {
     return [
       `> [@${escapeForEmbed(tweet.screenName)} ${url.origin}${url.pathname}]`,
@@ -51,27 +94,11 @@ const defaultFormat = async (
     ].join("\n");
   }
 
-  const { quote, replyTo, ...processed } = processTweet(tweet);
+  const content = tweet.content;
+  const screenName = tweet.author.screenName;
 
   return [
-    ...(replyTo
-      ? [
-        ...(await stringify(replyTo)).map((line) => ` > ${line}`),
-        ...(replyTo.quote
-          ? (await stringify(replyTo.quote)).map((line) => `  > ${line}`)
-          : []),
-      ]
-      : []),
-    ...(await stringify(processed)).map((line) => `> ${line}`),
-    ...(quote ? (await stringify(quote)).map((line) => `> > ${line}`) : []),
-  ].join("\n");
-};
-
-const stringify = async ({ content, author, id }: ProcessedTweet) => {
-  const url = new URL(`https://twitter.com/${author.screenName}/status/${id}`);
-
-  return [
-    `[@${escapeForEmbed(author.screenName)} ${url}]`,
+    `[@${escapeForEmbed(screenName)} ${url}]`,
     ...(await Promise.all(content.map(async (node) => {
       switch (node.type) {
         case "plain":
@@ -87,14 +114,17 @@ const stringify = async ({ content, author, id }: ProcessedTweet) => {
           let i = 1;
           for (; i < node.media.length; i += 2) {
             lines.push(
-              `${await makeEmbed(node.media[i - 1], url)} ${await makeEmbed(
+              `[${await uploadMedia(
+                node.media[i - 1],
+                url,
+              )}] [${await uploadMedia(
                 node.media[i],
                 url,
-              )}`,
+              )}]`,
             );
           }
           if (i === node.media.length) {
-            lines.push(await makeEmbed(node.media[i - 1], url));
+            lines.push(`[${await uploadMedia(node.media[i - 1], url)}]`);
           }
           return `\n${lines.join("\n")}\n`;
         }
@@ -102,7 +132,7 @@ const stringify = async ({ content, author, id }: ProcessedTweet) => {
           return `${convertScrapboxURL()(node.url)} `;
       }
     }))).join("").split("\n"),
-  ];
+  ].join("\n");
 };
 
 let projectId = "";
@@ -114,14 +144,25 @@ const getProjectId = async () => {
   return projectId;
 };
 
-const makeEmbed = async (media: Media["media"][0], tweetURL: URL) =>
-  `[${
-    (await uploadTwimg(media.url, tweetURL, await getProjectId(), "")) ??
-      media.url
-  }]`;
+/** Uploads media to Gyazo or scrapbox.io and returns the URL of the uploaded media.
+ * If the upload fails, it returns the original media URL.
+ *
+ * @param media - The media to upload.
+ * @param tweetURL - The URL of the tweet.
+ * @returns The URL of the uploaded media or the original media URL.
+ */
+export const uploadMedia = async (media: Media, tweetURL: URL): Promise<URL> =>
+  (await uploadTwimg(media.url, tweetURL, await getProjectId(), "")) ??
+    media.url;
 
-// from https://scrapbox.io/asset/index.js
-const escapeForEmbed = (text: string) =>
+/** scrapboxの記法と干渉する文字を取り除く
+ *
+ * ported from https://scrapbox.io/asset/index.js
+ *
+ * @param text 変換前の文字列
+ * @returns 変換後の文字列
+ */
+export const escapeForEmbed = (text: string): string =>
   text
     .replace(/\b/gm, "")
     .replace(/[\s\r\n\u2028\u2029]+/gm, " ")
