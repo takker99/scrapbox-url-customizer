@@ -1,5 +1,6 @@
 import { upload } from "../deps/deno-gyazo.ts";
 import { getGyazoToken, uploadToGCS } from "../deps/scrapbox-rest.ts";
+import { uploadToGyazoGIF } from "./uploadVideo.ts";
 /** TamperMonkeyから注入された函数
  *
  * このmoduleの函数は、GM_fetchがある条件でしか使わないので、`undefined`の可能性を排除している
@@ -26,10 +27,16 @@ export const uploadTwimg = async (
         `${url}`.endsWith(".mp4")
       ? "video/mp4"
       : "video/webm";
-    const result = await uploadToGCS(
-      new File([await res.blob()], description, { type }),
-      projectId,
-    );
+    const file = new File([await res.blob()], description, { type });
+    if (type === "video/mp4") {
+      const res = await uploadToGyazoGIF(file);
+      if (res.ok) {
+        const fileURL = new URL(await res.text());
+        cache.set(url.href, fileURL);
+        return fileURL;
+      }
+    }
+    const result = await uploadToGCS(file, projectId);
     if (!result.ok) throw Error(result.value.name);
     const fileURL = new URL(result.value.embedUrl);
 
