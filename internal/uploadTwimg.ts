@@ -27,7 +27,9 @@ export const uploadTwimg = async (
         `${url}`.endsWith(".mp4")
       ? "video/mp4"
       : "video/webm";
-    const file = new File([await res.blob()], description, { type });
+    const file = new File([await res.blob()], description || `${tweetURL}`, {
+      type,
+    });
     if (type === "video/mp4") {
       const res = await uploadToGyazoGIF(file);
       if (res.ok) {
