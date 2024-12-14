@@ -2,7 +2,7 @@ import { useStatusBar } from "@cosense/std/browser/dom";
 import { convert as convertURL, type Middleware } from "./convert.ts";
 import { isString } from "@core/unknownutil/is/string";
 export * from "./middlewares/mod.ts";
-export { convertURL };
+export { convertURL, type Middleware };
 
 /** URLもしくはURLを0個以上含んだテキストを変換する
  *
