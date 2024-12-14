@@ -1,10 +1,6 @@
 import { expandTwitterShortURL } from "../internal/expandTwitterShortURL.ts";
-
-declare global {
-  interface Window {
-    GM_fetch: (typeof fetch) | undefined;
-  }
-}
+import type { UnsafeWindow } from "../internal/UnsafeWindow.ts";
+import { mapOrElseForResult } from "option-t/plain_result";
 
 /** 各種の短縮URLを展開する
  *
@@ -20,6 +16,7 @@ declare global {
  * - w.wiki
  */
 export const expandShortURL = (url: URL): Promise<URL> | URL => {
+  const fetch_ = (window as unknown as UnsafeWindow).GM_fetch;
   if (
     [
       "bit.ly",
@@ -32,26 +29,16 @@ export const expandShortURL = (url: URL): Promise<URL> | URL => {
       "w.wiki",
     ].includes(
       url.hostname,
-      // deno-lint-ignore no-window
-    ) && window.GM_fetch
+    ) && fetch_
   ) {
-    // deno-lint-ignore no-window
-    return window.GM_fetch(url).then((res) => res.ok ? new URL(res.url) : url);
+    return fetch_(url).then((res) => res.ok ? new URL(res.url) : url);
   }
 
   if (url.hostname !== "t.co") return url;
   const promise = expandTwitterShortURL(url.pathname.slice(1));
   if (!promise) return url;
 
-  return (async () => {
-    const result = await promise;
-    if (!result.ok) throw result.value;
-
-    try {
-      return new URL(result.value);
-    } catch (e: unknown) {
-      if (e instanceof TypeError) return url;
-      throw e;
-    }
-  })();
+  return promise.then((result) =>
+    mapOrElseForResult(result, () => url, (expanded) => expanded ?? url)
+  );
 };

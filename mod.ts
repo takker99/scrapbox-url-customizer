@@ -1,7 +1,6 @@
-import { useStatusBar } from "./deps/scrapbox.ts";
-import { convert as convertURL, Middleware } from "./convert.ts";
-import { isString } from "./is.ts";
-export type { Middleware };
+import { useStatusBar } from "@cosense/std/browser/dom";
+import { convert as convertURL, type Middleware } from "./convert.ts";
+import { isString } from "@core/unknownutil/is/string";
 export * from "./middlewares/mod.ts";
 export { convertURL };
 
@@ -14,7 +13,7 @@ export { convertURL };
 export const convert = (
   text: string | URL,
   ...middlewares: Middleware[]
-): Promise<string> | string => {
+): string | Promise<string> => {
   if (text instanceof URL) {
     return convertURL(new URL(text), ...middlewares);
   }

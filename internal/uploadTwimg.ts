@@ -1,6 +1,7 @@
-import { upload } from "../deps/deno-gyazo.ts";
-import { getGyazoToken, uploadToGCS } from "../deps/scrapbox-rest.ts";
+import { upload } from "@takker/gyazo";
+import { getGyazoToken, uploadToGCS } from "@cosense/std/rest";
 import { uploadToGyazoGIF } from "./uploadVideo.ts";
+import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 /** TamperMonkeyから注入された函数
  *
  * このmoduleの函数は、GM_fetchがある条件でしか使わないので、`undefined`の可能性を排除している
@@ -39,8 +40,8 @@ export const uploadTwimg = async (
       }
     }
     const result = await uploadToGCS(file, projectId);
-    if (!result.ok) throw Error(result.value.name);
-    const fileURL = new URL(result.value.embedUrl);
+    if (isErr(result)) throw Error(unwrapErr(result).name);
+    const fileURL = new URL(unwrapOk(result).embedUrl);
 
     cache.set(url.href, fileURL);
 
@@ -52,13 +53,13 @@ export const uploadTwimg = async (
   if (!checked) {
     const result = await getGyazoToken();
     checked = true;
-    if (!result.ok) {
+    if (isErr(result)) {
       alert(
         "You haven't logged in Gyazo yet, so you can only upload images to scrapbox.io.",
       );
       return;
     }
-    token = result.value || "";
+    token = unwrapOk(result) || "";
     if (!token) {
       alert(
         "You haven't connect Gyazo to scrapbox.io yet.",
@@ -77,9 +78,9 @@ export const uploadTwimg = async (
     refererURL: tweetURL,
     description,
   });
-  if (!result.ok) throw Error(result.value.name);
+  if (isErr(result)) throw Error(unwrapErr(result).name);
 
-  const gyazoURL = new URL(result.value.permalink_url);
+  const gyazoURL = new URL(unwrapOk(result).permalink_url);
 
   cache.set(url.href, gyazoURL);
 

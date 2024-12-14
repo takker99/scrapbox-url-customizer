@@ -1,13 +1,21 @@
-import { getTweet, RefTweet, Tweet } from "../internal/getTweet.ts";
+import { getTweet, type RefTweet, type Tweet } from "../internal/getTweet.ts";
 import { uploadTwimg } from "../internal/uploadTwimg.ts";
-import { getProject, getTweetInfo, TweetInfo } from "../deps/scrapbox-rest.ts";
 import {
-  Media,
-  ProcessedTweet,
+  type FetchError,
+  getProject,
+  getTweetInfo,
+  type HTTPError,
+  type TweetInfoError,
+} from "@cosense/std/rest";
+import {
+  type Media,
+  type ProcessedTweet,
   processTweet,
 } from "../internal/processTweet.ts";
 import { convertScrapboxURL } from "./convertScrapboxURL.ts";
-import { Scrapbox } from "../deps/scrapbox.ts";
+import type { Scrapbox } from "@cosense/types/userscript";
+import type { TweetInfo } from "@cosense/types/rest";
+import { isErr, type Result, unwrapErr, unwrapOk } from "option-t/plain_result";
 declare const scrapbox: Scrapbox;
 
 export type { Media, ProcessedTweet, Tweet, TweetInfo };
@@ -34,10 +42,16 @@ export const formatTweet = (
   if (!id) return url;
 
   return (async () => {
-    const result = await (getTweet(id) ?? getTweetInfo(url.href));
-    if (!result.ok) throw result.value;
+    const result: Result<
+      Tweet | TweetInfo,
+      TweetInfoError | FetchError | HTTPError
+    > = await (getTweet(id) ?? getTweetInfo(url.href));
+
+    if (isErr(result)) throw unwrapErr(result);
+    const tweet = unwrapOk(result);
+
     return format(
-      "images" in result.value ? { ...result.value, id } : result.value,
+      "images" in tweet ? { ...tweet, id } : tweet,
       url,
     );
   })();
@@ -139,8 +153,8 @@ let projectId = "";
 const getProjectId = async () => {
   if (projectId) return projectId;
   const result = await getProject(scrapbox.Project.name);
-  if (!result.ok) throw new Error(result.value.name);
-  projectId = result.value.id;
+  if (isErr(result)) throw new Error(unwrapErr(result).name);
+  projectId = unwrapOk(result).id;
   return projectId;
 };
 
