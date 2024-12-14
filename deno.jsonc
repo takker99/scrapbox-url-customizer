@@ -29,6 +29,7 @@
     ]
   },
   "exports": {
-    ".": "./mod.ts"
+    ".": "./mod.ts",
+    "./middlewares": "./middlewares/mod.ts"
   }
 }
