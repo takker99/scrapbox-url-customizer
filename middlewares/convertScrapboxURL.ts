@@ -1,4 +1,4 @@
-import type { Scrapbox } from "../deps/scrapbox.ts";
+import type { Scrapbox } from "@cosense/types/userscript";
 declare const scrapbox: Scrapbox;
 
 const reservedNames = [

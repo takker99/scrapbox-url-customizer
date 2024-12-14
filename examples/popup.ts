@@ -6,16 +6,16 @@ import {
   formatTweet,
   formatURL,
   formatWikipedia,
-  Middleware,
   redirectGoogleSearch,
   redirectWikiwand,
   shortenAmazonURL,
 } from "../mod.ts";
-import { insertText, Scrapbox } from "../deps/scrapbox.ts";
+import { insertText } from "@cosense/std/browser/dom";
+import type { Scrapbox } from "@cosense/types/userscript";
 declare const scrapbox: Scrapbox;
 
 // 毎回functionsを作るのは無駄なので、globalに保持しておく
-const middlewares: Middleware[] = [
+const middlewares = [
   redirectGoogleSearch,
   expandShortURL,
   redirectGoogleSearch,
@@ -26,7 +26,7 @@ const middlewares: Middleware[] = [
   formatTweet(),
   formatWikipedia,
   formatURL(),
-];
+] as const;
 
 scrapbox.PopupMenu.addButton({
   title: (text) => /https?:\/\/\S+/.test(text) ? "URL" : "",

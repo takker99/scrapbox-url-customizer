@@ -1,11 +1,8 @@
 // 説明の一部は https://developer.twitter.com/en/docs/twitter-api からコピペした
-import { HTTPError, makeHTTPError } from "../error.ts";
-import { Result } from "../deps/scrapbox-rest.ts";
-declare global {
-  interface Window {
-    GM_fetch: (typeof fetch) | undefined;
-  }
-}
+import { makeHTTPError } from "../error.ts";
+import { mapAsyncForResult, type Result } from "option-t/plain_result";
+import type { UnsafeWindow } from "./UnsafeWindow.ts";
+import type { HTTPError } from "@cosense/std/rest";
 
 /** tweetを取得する
  *
@@ -14,22 +11,15 @@ declare global {
  */
 export const getTweet = (
   tweetId: string,
-): Promise<Result<Tweet, HTTPError>> | undefined => {
-  // deno-lint-ignore no-window
-  if (!window.GM_fetch) return;
-  // deno-lint-ignore no-window
-  const fetch_ = window.GM_fetch;
-
-  return (async () => {
-    const res = await fetch_(
-      `https://cdn.syndication.twimg.com/tweet-result?id=${tweetId}&token=x`,
-    );
-    const error = makeHTTPError(res);
-    if (error) return { ok: false, value: error };
-    const tweet = (await res.json()) as Tweet;
-    return { ok: true, value: tweet };
-  })();
-};
+): Promise<Result<Tweet, HTTPError>> | undefined =>
+  (window as unknown as UnsafeWindow).GM_fetch?.(
+    `https://cdn.syndication.twimg.com/tweet-result?id=${tweetId}&token=x`,
+  )?.then?.((res) =>
+    mapAsyncForResult(
+      makeHTTPError(res),
+      (res) => res.json() as Promise<Tweet>,
+    )
+  );
 
 /** The response of `https://cdn.syndication.twimg.com/tweet-result?id=:tweetId` */
 export interface Tweet {

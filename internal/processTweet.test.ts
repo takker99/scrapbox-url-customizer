@@ -1,6 +1,6 @@
 /// <reference lib="deno.ns" />
 
-import { assertSnapshot } from "../deps/testing.ts";
+import { assertSnapshot } from "@std/testing/snapshot";
 import { processTweet } from "./processTweet.ts";
 import type { RefTweet, Tweet } from "./getTweet.ts";
 import tweet from "./1572401761092239362.json" with { type: "json" };

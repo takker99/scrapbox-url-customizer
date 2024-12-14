@@ -1,10 +1,7 @@
-import { HTTPError, makeHTTPError } from "../error.ts";
-import { Result } from "../deps/scrapbox-rest.ts";
-declare global {
-  interface Window {
-    GM_fetch: (typeof fetch) | undefined;
-  }
-}
+import type { HTTPError } from "@cosense/std/rest";
+import { makeHTTPError } from "../error.ts";
+import type { UnsafeWindow } from "./UnsafeWindow.ts";
+import { mapAsyncForResult, type Result } from "option-t/plain_result";
 
 const charsetRegExp = /charset=([^;]+)/;
 
@@ -15,24 +12,20 @@ const charsetRegExp = /charset=([^;]+)/;
  */
 export const getWebPage = (
   url: URL,
-): Promise<Result<string, HTTPError>> | undefined => {
-  // deno-lint-ignore no-window
-  if (!window.GM_fetch) return;
-  // deno-lint-ignore no-window
-  const fetch_ = window.GM_fetch;
-
-  return (async () => {
-    const res = await fetch_(`${url}`);
-    const error = makeHTTPError(res);
-    if (error) return { ok: false, value: error };
-
-    const contentType =
-      res.headers.get("content-type")?.match?.(charsetRegExp)?.[1] ??
-        await detectEncoding(res.clone());
-    const html = new TextDecoder(contentType).decode(await res.arrayBuffer());
-    return { ok: true, value: html };
-  })();
-};
+): Promise<Result<string, HTTPError>> | undefined =>
+  (window as unknown as UnsafeWindow).GM_fetch?.(
+    `${url}`,
+  )?.then?.((res) =>
+    mapAsyncForResult(
+      makeHTTPError(res),
+      async (res) => {
+        const contentType =
+          res.headers.get("content-type")?.match?.(charsetRegExp)?.[1] ??
+            await detectEncoding(res.clone());
+        return new TextDecoder(contentType).decode(await res.arrayBuffer());
+      },
+    )
+  );
 
 const detectEncoding = async (res: Response): Promise<string> => {
   const dom = new DOMParser().parseFromString(await res.text(), "text/html");
