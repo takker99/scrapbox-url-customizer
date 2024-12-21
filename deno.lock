@@ -8,11 +8,11 @@
     "jsr:@std/assert@^1.0.10": "1.0.10",
     "jsr:@std/async@1": "1.0.9",
     "jsr:@std/encoding@1": "1.0.5",
-    "jsr:@std/fs@^1.0.7": "1.0.7",
+    "jsr:@std/fs@^1.0.8": "1.0.8",
     "jsr:@std/html@^1.0.3": "1.0.3",
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "jsr:@std/path@^1.0.8": "1.0.8",
-    "jsr:@std/testing@^1.0.7": "1.0.7",
+    "jsr:@std/testing@^1.0.8": "1.0.8",
     "jsr:@takker/gyazo@0.3": "0.3.0",
     "jsr:@takker/md5@0.1": "0.1.0",
     "npm:option-t@50": "50.0.2",
@@ -55,8 +55,8 @@
     "@std/encoding@1.0.5": {
       "integrity": "ecf363d4fc25bd85bd915ff6733a7e79b67e0e7806334af15f4645c569fefc04"
     },
-    "@std/fs@1.0.7": {
-      "integrity": "95ac7326e0e59089c979706e17bb28db03b5fb41c5a37c9c556788198b0662d6",
+    "@std/fs@1.0.8": {
+      "integrity": "161c721b6f9400b8100a851b6f4061431c538b204bb76c501d02c508995cffe0",
       "dependencies": [
         "jsr:@std/path"
       ]
@@ -70,8 +70,8 @@
     "@std/path@1.0.8": {
       "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
     },
-    "@std/testing@1.0.7": {
-      "integrity": "aa5f0507352449064b09eff70ac1b6da3f765ee66bcc20dad9e5e433776580d5",
+    "@std/testing@1.0.8": {
+      "integrity": "ceef535808fb7568e91b0f8263599bd29b1c5603ffb0377227f00a8ca9fe42a2",
       "dependencies": [
         "jsr:@std/assert",
         "jsr:@std/fs",
@@ -154,7 +154,7 @@
       "jsr:@cosense/types@0.10",
       "jsr:@std/assert@^1.0.10",
       "jsr:@std/html@^1.0.3",
-      "jsr:@std/testing@^1.0.7",
+      "jsr:@std/testing@^1.0.8",
       "jsr:@takker/gyazo@0.3",
       "npm:option-t@^49.3.0",
       "npm:socket.io-client@^4.8.1"
