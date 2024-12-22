@@ -3,7 +3,7 @@
   "specifiers": {
     "jsr:@core/unknownutil@4": "4.3.0",
     "jsr:@cosense/std@~0.29.2": "0.29.2",
-    "jsr:@cosense/types@0.10": "0.10.1",
+    "jsr:@cosense/types@~0.10.4": "0.10.4",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
     "jsr:@std/assert@^1.0.10": "1.0.10",
     "jsr:@std/async@1": "1.0.9",
@@ -37,8 +37,8 @@
         "npm:socket.io-client@^4.7.5"
       ]
     },
-    "@cosense/types@0.10.1": {
-      "integrity": "13d2488a02c7b0b035a265bc3299affbdab1ea5b607516379685965cd37b2058"
+    "@cosense/types@0.10.4": {
+      "integrity": "04423c152a525df848c067f9c6aa05409baadf9da15d8e4569e1bcedfa3c7624"
     },
     "@progfay/scrapbox-parser@9.2.0": {
       "integrity": "82ebb95e72dd0ea44547fd48e2bcb479fd2275fc26c4515598f742e5aaf6e0e5"
@@ -151,7 +151,7 @@
     "dependencies": [
       "jsr:@core/unknownutil@4",
       "jsr:@cosense/std@~0.29.2",
-      "jsr:@cosense/types@0.10",
+      "jsr:@cosense/types@~0.10.4",
       "jsr:@std/assert@^1.0.10",
       "jsr:@std/html@^1.0.3",
       "jsr:@std/testing@^1.0.8",

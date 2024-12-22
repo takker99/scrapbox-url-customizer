@@ -12,7 +12,7 @@
   "imports": {
     "@core/unknownutil": "jsr:@core/unknownutil@^4.0.0",
     "@cosense/std": "jsr:@cosense/std@^0.29.2",
-    "@cosense/types": "jsr:@cosense/types@0.10",
+    "@cosense/types": "jsr:@cosense/types@^0.10.4",
     "@std/assert": "jsr:@std/assert@^1.0.10",
     "@std/html": "jsr:@std/html@^1.0.3",
     "@std/testing/snapshot": "jsr:@std/testing@^1.0.8/snapshot",
