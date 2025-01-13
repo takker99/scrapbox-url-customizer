@@ -2,7 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@core/unknownutil@4": "4.3.0",
-    "jsr:@cosense/std@~0.29.3": "0.29.3",
+    "jsr:@cosense/std@~0.29.4": "0.29.4",
     "jsr:@cosense/types@~0.10.4": "0.10.4",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
     "jsr:@std/assert@^1.0.10": "1.0.10",
@@ -15,7 +15,7 @@
     "jsr:@std/testing@^1.0.9": "1.0.9",
     "jsr:@takker/gyazo@0.3": "0.3.0",
     "jsr:@takker/md5@0.1": "0.1.0",
-    "npm:option-t@50": "50.0.2",
+    "npm:option-t@51": "51.0.1",
     "npm:option-t@^49.1.0": "49.1.0",
     "npm:option-t@^49.3.0": "49.3.0",
     "npm:socket.io-client@^4.7.5": "4.8.1",
@@ -25,15 +25,15 @@
     "@core/unknownutil@4.3.0": {
       "integrity": "538a3687ffa81028e91d148818047df219663d0da671d906cecd165581ae55cc"
     },
-    "@cosense/std@0.29.3": {
-      "integrity": "0ccefb4c97bec28e5f0006788690f3f41d7f93f50b9b6d1ba4c05cafe4019402",
+    "@cosense/std@0.29.4": {
+      "integrity": "550d7b55bebaa90b69208cb94d1242e9eb0917bed91f2c66f36b4135b54a62f9",
       "dependencies": [
         "jsr:@core/unknownutil",
         "jsr:@progfay/scrapbox-parser",
         "jsr:@std/async",
         "jsr:@std/encoding",
         "jsr:@takker/md5",
-        "npm:option-t@50",
+        "npm:option-t@51",
         "npm:socket.io-client@^4.7.5"
       ]
     },
@@ -121,8 +121,8 @@
     "option-t@49.3.0": {
       "integrity": "sha512-MQFSbqNnjEzQahREx7r1tESmK2UctFK+zmwmnHpBHROJvoRGM9tDMWi53B6ePyFJyAiggRRV9cuXedkpLBeC8w=="
     },
-    "option-t@50.0.2": {
-      "integrity": "sha512-tIGimxb003CDEqu7f+SJtDDVK5LKAlbLt7q5tW5vFMiBb7QXqESXhgmP5bF+BUnShOKRTBfI/PHZBv7I+NHlig=="
+    "option-t@51.0.1": {
+      "integrity": "sha512-/M5KCGp6SQS4luBoWE1r3G3BZbRPuPfedHpVwJa7UGj98nNqQ2HBuy0E4fGFa4GKzTP+hnxFIs+HKtAq6DNA+w=="
     },
     "socket.io-client@4.8.1": {
       "integrity": "sha512-hJVXfu3E28NmzGk8o1sHhN3om52tRvwYeidbj7xKy2eIIse5IoKX3USlS6Tqt3BHAtflLIkCQBkzVrEEfWUyYQ==",
@@ -150,7 +150,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@core/unknownutil@4",
-      "jsr:@cosense/std@~0.29.3",
+      "jsr:@cosense/std@~0.29.4",
       "jsr:@cosense/types@~0.10.4",
       "jsr:@std/assert@^1.0.10",
       "jsr:@std/html@^1.0.3",
