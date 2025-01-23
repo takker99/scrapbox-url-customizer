@@ -2,11 +2,12 @@
   "version": "4",
   "specifiers": {
     "jsr:@core/unknownutil@4": "4.3.0",
-    "jsr:@cosense/std@~0.29.4": "0.29.4",
+    "jsr:@cosense/std@~0.29.5": "0.29.5",
     "jsr:@cosense/types@~0.10.4": "0.10.4",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
-    "jsr:@std/assert@^1.0.10": "1.0.10",
-    "jsr:@std/async@1": "1.0.9",
+    "jsr:@std/assert@^1.0.10": "1.0.11",
+    "jsr:@std/assert@^1.0.11": "1.0.11",
+    "jsr:@std/async@1": "1.0.10",
     "jsr:@std/encoding@1": "1.0.6",
     "jsr:@std/fs@^1.0.9": "1.0.9",
     "jsr:@std/html@^1.0.3": "1.0.3",
@@ -25,8 +26,8 @@
     "@core/unknownutil@4.3.0": {
       "integrity": "538a3687ffa81028e91d148818047df219663d0da671d906cecd165581ae55cc"
     },
-    "@cosense/std@0.29.4": {
-      "integrity": "550d7b55bebaa90b69208cb94d1242e9eb0917bed91f2c66f36b4135b54a62f9",
+    "@cosense/std@0.29.5": {
+      "integrity": "9debd9092c9d2d1f22004b3701a55da254edc7f4120d70521b2cbac7cc95a750",
       "dependencies": [
         "jsr:@core/unknownutil",
         "jsr:@progfay/scrapbox-parser",
@@ -49,8 +50,14 @@
         "jsr:@std/internal"
       ]
     },
-    "@std/async@1.0.9": {
-      "integrity": "c6472fd0623b3f3daae023cdf7ca5535e1b721dfbf376562c0c12b3fb4867f91"
+    "@std/assert@1.0.11": {
+      "integrity": "2461ef3c368fe88bc60e186e7744a93112f16fd110022e113a0849e94d1c83c1",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/async@1.0.10": {
+      "integrity": "2ff1b1c7d33d1416159989b0f69e59ec7ee8cb58510df01e454def2108b3dbec"
     },
     "@std/encoding@1.0.6": {
       "integrity": "ca87122c196e8831737d9547acf001766618e78cd8c33920776c7f5885546069"
@@ -73,7 +80,7 @@
     "@std/testing@1.0.9": {
       "integrity": "9bdd4ac07cb13e7594ac30e90f6ceef7254ac83a9aeaa089be0008f33aab5cd4",
       "dependencies": [
-        "jsr:@std/assert",
+        "jsr:@std/assert@^1.0.10",
         "jsr:@std/fs",
         "jsr:@std/internal",
         "jsr:@std/path"
@@ -150,9 +157,9 @@
   "workspace": {
     "dependencies": [
       "jsr:@core/unknownutil@4",
-      "jsr:@cosense/std@~0.29.4",
+      "jsr:@cosense/std@~0.29.5",
       "jsr:@cosense/types@~0.10.4",
-      "jsr:@std/assert@^1.0.10",
+      "jsr:@std/assert@^1.0.11",
       "jsr:@std/html@^1.0.3",
       "jsr:@std/testing@^1.0.9",
       "jsr:@takker/gyazo@0.3",
