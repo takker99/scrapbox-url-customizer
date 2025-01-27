@@ -2,7 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@core/unknownutil@4": "4.3.0",
-    "jsr:@cosense/std@~0.29.5": "0.29.5",
+    "jsr:@cosense/std@~0.29.6": "0.29.6",
     "jsr:@cosense/types@~0.10.4": "0.10.4",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
     "jsr:@std/assert@^1.0.10": "1.0.11",
@@ -26,8 +26,8 @@
     "@core/unknownutil@4.3.0": {
       "integrity": "538a3687ffa81028e91d148818047df219663d0da671d906cecd165581ae55cc"
     },
-    "@cosense/std@0.29.5": {
-      "integrity": "9debd9092c9d2d1f22004b3701a55da254edc7f4120d70521b2cbac7cc95a750",
+    "@cosense/std@0.29.6": {
+      "integrity": "4c9f985cd4b0fdbe489b85374d8fc077cdbe4b41b021afbb6b425569fee8e3dc",
       "dependencies": [
         "jsr:@core/unknownutil",
         "jsr:@progfay/scrapbox-parser",
@@ -157,7 +157,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@core/unknownutil@4",
-      "jsr:@cosense/std@~0.29.5",
+      "jsr:@cosense/std@~0.29.6",
       "jsr:@cosense/types@~0.10.4",
       "jsr:@std/assert@^1.0.11",
       "jsr:@std/html@^1.0.3",
