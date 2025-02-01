@@ -2,13 +2,13 @@
   "version": "4",
   "specifiers": {
     "jsr:@core/unknownutil@4": "4.3.0",
-    "jsr:@cosense/std@~0.29.6": "0.29.6",
+    "jsr:@cosense/std@~0.29.8": "0.29.8",
     "jsr:@cosense/types@~0.10.4": "0.10.4",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
     "jsr:@std/assert@^1.0.10": "1.0.11",
     "jsr:@std/assert@^1.0.11": "1.0.11",
     "jsr:@std/async@1": "1.0.10",
-    "jsr:@std/encoding@1": "1.0.6",
+    "jsr:@std/encoding@1": "1.0.7",
     "jsr:@std/fs@^1.0.9": "1.0.9",
     "jsr:@std/html@^1.0.3": "1.0.3",
     "jsr:@std/internal@^1.0.5": "1.0.5",
@@ -26,8 +26,8 @@
     "@core/unknownutil@4.3.0": {
       "integrity": "538a3687ffa81028e91d148818047df219663d0da671d906cecd165581ae55cc"
     },
-    "@cosense/std@0.29.6": {
-      "integrity": "4c9f985cd4b0fdbe489b85374d8fc077cdbe4b41b021afbb6b425569fee8e3dc",
+    "@cosense/std@0.29.8": {
+      "integrity": "f735dd57dfddac53a5b1b8ff3fdad376bfbda8e9ae1d76a29353b5cf40f41dbf",
       "dependencies": [
         "jsr:@core/unknownutil",
         "jsr:@progfay/scrapbox-parser",
@@ -59,8 +59,8 @@
     "@std/async@1.0.10": {
       "integrity": "2ff1b1c7d33d1416159989b0f69e59ec7ee8cb58510df01e454def2108b3dbec"
     },
-    "@std/encoding@1.0.6": {
-      "integrity": "ca87122c196e8831737d9547acf001766618e78cd8c33920776c7f5885546069"
+    "@std/encoding@1.0.7": {
+      "integrity": "f631247c1698fef289f2de9e2a33d571e46133b38d042905e3eac3715030a82d"
     },
     "@std/fs@1.0.9": {
       "integrity": "3eef7e3ed3d317b29432c7dcb3b20122820dbc574263f721cb0248ad91bad890",
@@ -157,7 +157,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@core/unknownutil@4",
-      "jsr:@cosense/std@~0.29.6",
+      "jsr:@cosense/std@~0.29.8",
       "jsr:@cosense/types@~0.10.4",
       "jsr:@std/assert@^1.0.11",
       "jsr:@std/html@^1.0.3",
