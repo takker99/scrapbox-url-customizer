@@ -1,11 +1,13 @@
-import { isString } from "./is.ts";
+import { isString } from "@core/unknownutil/is/string";
 
 /** URL変換用関数
  *
  * @param url 変換するURL
  * @return 変換後のURL。変換が不要だったときは`url`をそのまま返す。これ以上変換が不要な場合は、文字列にして返す
  */
-export type Middleware = (url: URL) => URL | string | Promise<URL | string>;
+export type Middleware = (
+  url: Readonly<URL>,
+) => URL | string | Promise<URL | string>;
 
 /** URLを変換する
  * @param text URLもしくはURLを0個以上含んだテキスト
@@ -15,19 +17,15 @@ export type Middleware = (url: URL) => URL | string | Promise<URL | string>;
 export const convert = (
   url: URL,
   ...middlewares: Middleware[]
-): Promise<string> | string => {
-  let prev: URL | Promise<URL | string> = url;
-  for (const middleware of middlewares) {
-    const next: URL | string | Promise<URL | string> = prev instanceof Promise
-      ? prev.then((url) => isString(url) ? url : middleware(url))
-      : middleware(prev);
-    if (isString(next)) return next;
-    // 新しいURLに作り直す
-    prev = next instanceof URL
-      ? new URL(next)
-      : next.then((converted) =>
-        isString(converted) ? converted : new URL(converted)
-      );
-  }
-  return prev instanceof Promise ? prev.then((url) => `${url}`) : `${url}`;
+): string | Promise<string> => {
+  const final = middlewares.reduce(
+    (prev, middleware) =>
+      isString(prev)
+        ? prev
+        : prev instanceof Promise
+        ? prev.then((url) => isString(url) ? url : middleware(url))
+        : middleware(prev),
+    url as URL | string | Promise<URL | string>,
+  );
+  return final instanceof Promise ? final.then((url) => `${url}`) : `${url}`;
 };

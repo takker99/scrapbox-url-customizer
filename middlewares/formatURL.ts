@@ -1,9 +1,10 @@
-import { getWebPageTitle, Project } from "../deps/scrapbox-rest.ts";
+
+import { isString } from "@core/unknownutil/is/string";
+import { getWebPageTitle } from "@cosense/std/rest";
+import { scrapbox } from "@cosense/types/userscript";
+import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import { getWebPage } from "../internal/getWebPage.ts";
-import { isString } from "../is.ts";
-import { Scrapbox } from "../deps/scrapbox.ts";
-import { expandTwitterShortURL } from "../internal/expandTwitterShortURL.ts";
-declare const scrapbox: Scrapbox;
+
 /** URL先のデータを使って外部リンク記法にする関数を作る
  *
  * 任意のURLを受け付ける
@@ -62,11 +63,11 @@ const getDocumentOrTitle = async (url: URL): Promise<Document | string> => {
   const promise = getWebPage(url);
   if (!promise) {
     const result = await getWebPageTitle(url);
-    if (!result.ok) throw result.value;
-    return result.value;
+    if (isErr(result)) throw unwrapErr(result);
+    return unwrapOk(result);
   }
 
   const result = await promise;
-  if (!result.ok) throw result.value;
-  return new DOMParser().parseFromString(result.value, "text/html");
+  if (isErr(result)) throw unwrapErr(result);
+  return new DOMParser().parseFromString(unwrapOk(result), "text/html");
 };
