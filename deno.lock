@@ -3,13 +3,13 @@
   "specifiers": {
     "jsr:@core/iterutil@0.9": "0.9.0",
     "jsr:@core/unknownutil@4": "4.3.0",
-    "jsr:@cosense/std@~0.29.10": "0.29.10",
-    "jsr:@cosense/types@0.10": "0.10.7",
-    "jsr:@cosense/types@~0.10.7": "0.10.7",
+    "jsr:@cosense/std@~0.29.12": "0.29.12",
+    "jsr:@cosense/types@~0.10.7": "0.10.8",
+    "jsr:@cosense/types@~0.10.8": "0.10.8",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
     "jsr:@std/assert@^1.0.12": "1.0.12",
     "jsr:@std/async@^1.0.11": "1.0.12",
-    "jsr:@std/encoding@1": "1.0.8",
+    "jsr:@std/encoding@1": "1.0.9",
     "jsr:@std/fs@^1.0.16": "1.0.16",
     "jsr:@std/html@^1.0.3": "1.0.3",
     "jsr:@std/internal@^1.0.6": "1.0.6",
@@ -30,8 +30,8 @@
     "@core/unknownutil@4.3.0": {
       "integrity": "538a3687ffa81028e91d148818047df219663d0da671d906cecd165581ae55cc"
     },
-    "@cosense/std@0.29.10": {
-      "integrity": "aa2e34aa0accf5ab7b8f44cc70556dc30f209c5cb3343c76e5a5d32878b0b133",
+    "@cosense/std@0.29.12": {
+      "integrity": "18c012e508ceb5c9ccae49b5b7cd4bd74dc1a44858fa462f9048d8d6a9735dc4",
       "dependencies": [
         "jsr:@core/iterutil",
         "jsr:@core/unknownutil",
@@ -44,8 +44,8 @@
         "npm:socket.io-client@^4.7.5"
       ]
     },
-    "@cosense/types@0.10.7": {
-      "integrity": "ce62b4cc7dc599f0f55abc5f4b88d6fe3f5aa7fbacdc46cc1ff32a62fea60176"
+    "@cosense/types@0.10.8": {
+      "integrity": "f946efbd89459ae7bd888d589151b0020e557aabc152710db645337769d54981"
     },
     "@progfay/scrapbox-parser@9.2.0": {
       "integrity": "82ebb95e72dd0ea44547fd48e2bcb479fd2275fc26c4515598f742e5aaf6e0e5"
@@ -65,8 +65,8 @@
     "@std/async@1.0.12": {
       "integrity": "d1bfcec459e8012846fe4e38dfc4241ab23240ecda3d8d6dfcf6d81a632e803d"
     },
-    "@std/encoding@1.0.8": {
-      "integrity": "a6c8f3f933ab1bed66244f435d1dc0fd23a888e07195532122ddc3d5f8f0e6b4"
+    "@std/encoding@1.0.9": {
+      "integrity": "025b8f18eb1749bc30d1353bf48b77d1eb5e35610220fa226f5a046b9240c5d7"
     },
     "@std/fs@1.0.16": {
       "integrity": "81878f62b6eeda0bf546197fc3daa5327c132fee1273f6113f940784a468b036",
@@ -163,8 +163,8 @@
   "workspace": {
     "dependencies": [
       "jsr:@core/unknownutil@4",
-      "jsr:@cosense/std@~0.29.10",
-      "jsr:@cosense/types@~0.10.7",
+      "jsr:@cosense/std@~0.29.12",
+      "jsr:@cosense/types@~0.10.8",
       "jsr:@std/assert@^1.0.12",
       "jsr:@std/html@^1.0.3",
       "jsr:@std/testing@^1.0.11",
