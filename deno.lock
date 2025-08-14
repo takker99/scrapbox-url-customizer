@@ -3,19 +3,19 @@
   "specifiers": {
     "jsr:@core/iterutil@0.9": "0.9.0",
     "jsr:@core/unknownutil@4": "4.3.0",
+    "jsr:@core/unknownutil@^4.3.0": "4.3.0",
     "jsr:@cosense/std@~0.29.16": "0.29.16",
     "jsr:@cosense/types@~0.10.10": "0.10.10",
     "jsr:@cosense/types@~0.10.7": "0.10.10",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
-    "jsr:@std/assert@^1.0.13": "1.0.13",
+    "jsr:@std/assert@^1.0.13": "1.0.14",
+    "jsr:@std/assert@^1.0.14": "1.0.14",
     "jsr:@std/async@^1.0.11": "1.0.14",
     "jsr:@std/encoding@1": "1.0.10",
     "jsr:@std/fs@^1.0.19": "1.0.19",
     "jsr:@std/html@^1.0.4": "1.0.4",
     "jsr:@std/internal@^1.0.10": "1.0.10",
-    "jsr:@std/internal@^1.0.6": "1.0.10",
-    "jsr:@std/internal@^1.0.9": "1.0.10",
-    "jsr:@std/path@^1.1.1": "1.1.1",
+    "jsr:@std/path@^1.1.1": "1.1.2",
     "jsr:@std/testing@^1.0.15": "1.0.15",
     "jsr:@takker/gyazo@0.3": "0.3.0",
     "jsr:@takker/md5@0.1": "0.1.0",
@@ -36,7 +36,7 @@
       "integrity": "689175169afcdc42b1bb65a23d3fbc6924fa58ab1cb42bfd1b532be6f5637b2e",
       "dependencies": [
         "jsr:@core/iterutil",
-        "jsr:@core/unknownutil",
+        "jsr:@core/unknownutil@4",
         "jsr:@cosense/types@~0.10.7",
         "jsr:@progfay/scrapbox-parser",
         "jsr:@std/async",
@@ -52,16 +52,10 @@
     "@progfay/scrapbox-parser@9.2.0": {
       "integrity": "82ebb95e72dd0ea44547fd48e2bcb479fd2275fc26c4515598f742e5aaf6e0e5"
     },
-    "@std/assert@1.0.10": {
-      "integrity": "59b5cbac5bd55459a19045d95cc7c2ff787b4f8527c0dd195078ff6f9481fbb3",
+    "@std/assert@1.0.14": {
+      "integrity": "68d0d4a43b365abc927f45a9b85c639ea18a9fab96ad92281e493e4ed84abaa4",
       "dependencies": [
-        "jsr:@std/internal@^1.0.6"
-      ]
-    },
-    "@std/assert@1.0.13": {
-      "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
-      "dependencies": [
-        "jsr:@std/internal@^1.0.6"
+        "jsr:@std/internal"
       ]
     },
     "@std/async@1.0.14": {
@@ -82,18 +76,18 @@
     "@std/internal@1.0.10": {
       "integrity": "e3be62ce42cab0e177c27698e5d9800122f67b766a0bea6ca4867886cbde8cf7"
     },
-    "@std/path@1.1.1": {
-      "integrity": "fe00026bd3a7e6a27f73709b83c607798be40e20c81dde655ce34052fd82ec76",
+    "@std/path@1.1.2": {
+      "integrity": "c0b13b97dfe06546d5e16bf3966b1cadf92e1cc83e56ba5476ad8b498d9e3038",
       "dependencies": [
-        "jsr:@std/internal@^1.0.9"
+        "jsr:@std/internal"
       ]
     },
     "@std/testing@1.0.15": {
       "integrity": "a490169f5ccb0f3ae9c94fbc69d2cd43603f2cffb41713a85f99bbb0e3087cbc",
       "dependencies": [
-        "jsr:@std/assert",
+        "jsr:@std/assert@^1.0.13",
         "jsr:@std/fs",
-        "jsr:@std/internal@^1.0.10",
+        "jsr:@std/internal",
         "jsr:@std/path"
       ]
     },
@@ -167,10 +161,10 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@core/unknownutil@4",
+      "jsr:@core/unknownutil@^4.3.0",
       "jsr:@cosense/std@~0.29.16",
       "jsr:@cosense/types@~0.10.10",
-      "jsr:@std/assert@^1.0.13",
+      "jsr:@std/assert@^1.0.14",
       "jsr:@std/html@^1.0.4",
       "jsr:@std/testing@^1.0.15",
       "jsr:@takker/gyazo@0.3",
