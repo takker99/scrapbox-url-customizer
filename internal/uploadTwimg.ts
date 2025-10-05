@@ -1,7 +1,7 @@
-import { upload } from "@takker/gyazo";
 import { getGyazoToken, uploadToGCS } from "@cosense/std/rest";
-import { uploadToGyazoGIF } from "./uploadVideo.ts";
+import { upload } from "@takker/gyazo";
 import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
+import { uploadToGyazoGIF } from "./uploadVideo.ts";
 /** TamperMonkeyから注入された函数
  *
  * このmoduleの函数は、GM_fetchがある条件でしか使わないので、`undefined`の可能性を排除している
@@ -61,9 +61,7 @@ export const uploadTwimg = async (
     }
     token = unwrapOk(result) || "";
     if (!token) {
-      alert(
-        "You haven't connect Gyazo to scrapbox.io yet.",
-      );
+      alert("You haven't connect Gyazo to scrapbox.io yet.");
       return;
     }
   } else if (!token) {
@@ -81,7 +79,7 @@ export const uploadTwimg = async (
 
   if (!response.ok) {
     throw new Error(
-      `Gyazo upload failed: ${response.status} ${response.statusText}`
+      `Gyazo upload failed: ${response.status} ${response.statusText}`,
     );
   }
 
