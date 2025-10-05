@@ -73,14 +73,20 @@ export const uploadTwimg = async (
   const res = await GM_fetch(url);
   if (!res.ok) return;
 
-  const result = await upload(await res.blob(), {
+  const response = await upload(await res.blob(), {
     accessToken: token,
     refererURL: tweetURL,
     description,
   });
-  if (isErr(result)) throw Error(unwrapErr(result).name);
 
-  const gyazoURL = new URL(unwrapOk(result).permalink_url);
+  if (!response.ok) {
+    throw new Error(
+      `Gyazo upload failed: ${response.status} ${response.statusText}`
+    );
+  }
+
+  const uploadResult = await response.json();
+  const gyazoURL = new URL(uploadResult.permalink_url);
 
   cache.set(url.href, gyazoURL);
 
