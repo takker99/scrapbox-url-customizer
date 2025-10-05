@@ -5,6 +5,7 @@
     "jsr:@core/unknownutil@4": "4.3.0",
     "jsr:@core/unknownutil@^4.3.0": "4.3.0",
     "jsr:@cosense/std@~0.29.16": "0.29.16",
+    "jsr:@cosense/types@0.10": "0.10.10",
     "jsr:@cosense/types@~0.10.10": "0.10.10",
     "jsr:@cosense/types@~0.10.7": "0.10.10",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
@@ -37,6 +38,7 @@
       "dependencies": [
         "jsr:@core/iterutil",
         "jsr:@core/unknownutil@4",
+        "jsr:@cosense/types@0.10",
         "jsr:@cosense/types@~0.10.7",
         "jsr:@progfay/scrapbox-parser",
         "jsr:@std/async",
