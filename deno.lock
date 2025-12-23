@@ -23,8 +23,8 @@
     "jsr:@takker/md5@0.1": "0.1.0",
     "npm:option-t@51": "51.1.1",
     "npm:option-t@^49.3.0": "49.3.0",
-    "npm:socket.io-client@^4.7.5": "4.8.1",
-    "npm:socket.io-client@^4.8.1": "4.8.1"
+    "npm:socket.io-client@^4.7.5": "4.8.2",
+    "npm:socket.io-client@^4.8.2": "4.8.2"
   },
   "jsr": {
     "@core/iterutil@0.9.0": {
@@ -110,11 +110,17 @@
         "ms"
       ]
     },
+    "debug@4.4.3": {
+      "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
+      "dependencies": [
+        "ms"
+      ]
+    },
     "engine.io-client@6.6.3": {
       "integrity": "sha512-T0iLjnyNWahNyv/lcjS2y4oE358tVS/SYQNxYXGAJ9/GLgH4VCvOQ/mhTjqU88mLZCQgiG8RIegFHYCdVC+j5w==",
       "dependencies": [
         "@socket.io/component-emitter",
-        "debug",
+        "debug@4.3.7",
         "engine.io-parser",
         "ws",
         "xmlhttprequest-ssl"
@@ -132,11 +138,11 @@
     "option-t@51.1.1": {
       "integrity": "sha512-Ww13j9NVqnGpxsaSr1y0o35Xq1WcopAeJkAbk9DWlKRBgFKYLuJwEU1GzWUtkhBhRQY0st5kfdtT02JO6YqEEw=="
     },
-    "socket.io-client@4.8.1": {
-      "integrity": "sha512-hJVXfu3E28NmzGk8o1sHhN3om52tRvwYeidbj7xKy2eIIse5IoKX3USlS6Tqt3BHAtflLIkCQBkzVrEEfWUyYQ==",
+    "socket.io-client@4.8.2": {
+      "integrity": "sha512-4MY14EMsyEPFA6lM01XIYepRdV8P6dUir2hxAlAysOYcbNAy5QNHYgIHOcQ1KYM7wTcKnKEW/ZRoIxRinWRXvA==",
       "dependencies": [
         "@socket.io/component-emitter",
-        "debug",
+        "debug@4.4.3",
         "engine.io-client",
         "socket.io-parser"
       ]
@@ -145,7 +151,7 @@
       "integrity": "sha512-/GbIKmo8ioc+NIWIhwdecY0ge+qVBSMdgxGygevmdHj24bsfgtCmcUUcQ5ZzcylGFHsN3k4HB4Cgkl96KVnuew==",
       "dependencies": [
         "@socket.io/component-emitter",
-        "debug"
+        "debug@4.3.7"
       ]
     },
     "ws@8.17.1": {
@@ -165,7 +171,7 @@
       "jsr:@std/testing@^1.0.16",
       "jsr:@takker/gyazo@~0.4.1",
       "npm:option-t@^49.3.0",
-      "npm:socket.io-client@^4.8.1"
+      "npm:socket.io-client@^4.8.2"
     ]
   }
 }
