@@ -27,5 +27,5 @@ export const convert = (
         : middleware(prev),
     url as URL | string | Promise<URL | string>,
   );
-  return final instanceof Promise ? final.then((url) => `${url}`) : `${url}`;
+  return final instanceof Promise ? final.then((url) => `${url}`) : `${final}`;
 };
