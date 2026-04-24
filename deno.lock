@@ -9,15 +9,15 @@
     "jsr:@cosense/types@~0.10.10": "0.10.10",
     "jsr:@cosense/types@~0.10.7": "0.10.10",
     "jsr:@progfay/scrapbox-parser@9": "9.2.0",
-    "jsr:@std/assert@^1.0.17": "1.0.19",
     "jsr:@std/assert@^1.0.19": "1.0.19",
     "jsr:@std/async@^1.0.11": "1.0.14",
     "jsr:@std/encoding@1": "1.0.10",
-    "jsr:@std/fs@^1.0.22": "1.0.23",
-    "jsr:@std/html@^1.0.5": "1.0.5",
-    "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@std/fs@^1.0.23": "1.0.23",
+    "jsr:@std/html@^1.0.6": "1.0.6",
+    "jsr:@std/internal@^1.0.12": "1.0.13",
+    "jsr:@std/internal@^1.0.13": "1.0.13",
     "jsr:@std/path@^1.1.4": "1.1.4",
-    "jsr:@std/testing@^1.0.17": "1.0.17",
+    "jsr:@std/testing@^1.0.18": "1.0.18",
     "jsr:@takker/gyazo@~0.4.1": "0.4.1",
     "jsr:@takker/md5@0.1": "0.1.0",
     "npm:option-t@51": "51.1.1",
@@ -56,7 +56,7 @@
     "@std/assert@1.0.19": {
       "integrity": "eaada96ee120cb980bc47e040f82814d786fe8162ecc53c91d8df60b8755991e",
       "dependencies": [
-        "jsr:@std/internal"
+        "jsr:@std/internal@^1.0.12"
       ]
     },
     "@std/async@1.0.14": {
@@ -71,24 +71,24 @@
         "jsr:@std/path"
       ]
     },
-    "@std/html@1.0.5": {
-      "integrity": "4e2d693f474cae8c16a920fa5e15a3b72267b94b84667f11a50c6dd1cb18d35e"
+    "@std/html@1.0.6": {
+      "integrity": "eaf759c8141e0733ca30eb49e4c08d8e6ca442b85c4d51f9894a56f502993e08"
     },
-    "@std/internal@1.0.12": {
-      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
+    "@std/internal@1.0.13": {
+      "integrity": "2f9546691d4ac2d32859c82dff284aaeac980ddeca38430d07941e7e288725c0"
     },
     "@std/path@1.1.4": {
       "integrity": "1d2d43f39efb1b42f0b1882a25486647cb851481862dc7313390b2bb044314b5",
       "dependencies": [
-        "jsr:@std/internal"
+        "jsr:@std/internal@^1.0.12"
       ]
     },
-    "@std/testing@1.0.17": {
-      "integrity": "87bdc2700fa98249d48a17cd72413352d3d3680dcfbdb64947fd0982d6bbf681",
+    "@std/testing@1.0.18": {
+      "integrity": "d3152f57b11666bf6358d0e127c7e3488e91178b0c2d8fbf0793e1c53cd13cb1",
       "dependencies": [
-        "jsr:@std/assert@^1.0.17",
+        "jsr:@std/assert",
         "jsr:@std/fs",
-        "jsr:@std/internal",
+        "jsr:@std/internal@^1.0.13",
         "jsr:@std/path"
       ]
     },
@@ -160,8 +160,8 @@
       "jsr:@cosense/std@~0.29.16",
       "jsr:@cosense/types@~0.10.10",
       "jsr:@std/assert@^1.0.19",
-      "jsr:@std/html@^1.0.5",
-      "jsr:@std/testing@^1.0.17",
+      "jsr:@std/html@^1.0.6",
+      "jsr:@std/testing@^1.0.18",
       "jsr:@takker/gyazo@~0.4.1",
       "npm:option-t@^49.3.0",
       "npm:socket.io-client@^4.8.3"

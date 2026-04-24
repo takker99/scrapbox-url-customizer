@@ -14,8 +14,8 @@
     "@cosense/std": "jsr:@cosense/std@^0.29.16",
     "@cosense/types": "jsr:@cosense/types@^0.10.10",
     "@std/assert": "jsr:@std/assert@^1.0.19",
-    "@std/html": "jsr:@std/html@^1.0.5",
-    "@std/testing/snapshot": "jsr:@std/testing@^1.0.17/snapshot",
+    "@std/html": "jsr:@std/html@^1.0.6",
+    "@std/testing/snapshot": "jsr:@std/testing@^1.0.18/snapshot",
     "@takker/gyazo": "jsr:@takker/gyazo@^0.4.1",
     "option-t": "npm:option-t@^49.3.0",
     "socket.io-client": "npm:socket.io-client@^4.8.3"
