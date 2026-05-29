@@ -24,27 +24,27 @@ export const processTweet = (
   const posted = new Date(tweet.created_at);
 
   const entities = [
-    ...tweet.entities.hashtags.map((hashtag) =>
+    ...tweet.entities.hashtags?.map?.((hashtag) =>
       ({
         type: "hashtag",
         ...hashtag,
       }) as const
-    ),
-    ...tweet.entities.symbols.map((symbol) =>
+    ) ?? [],
+    ...tweet.entities.symbols?.map?.((symbol) =>
       ({
         type: "symbol",
         ...symbol,
       }) as const
-    ),
-    ...tweet.entities.user_mentions.map((mention) =>
+    ) ?? [],
+    ...tweet.entities.user_mentions?.map?.((mention) =>
       ({
         type: "mention",
         name: mention.name,
         screenName: mention.screen_name,
         indices: mention.indices,
       }) as const
-    ),
-    ...tweet.entities.urls.map((url) => {
+    ) ?? [],
+    ...tweet.entities.urls?.map?.((url) => {
       const entity = {
         type: "url",
         indices: url.indices,
@@ -69,7 +69,7 @@ export const processTweet = (
       }
 
       return entity;
-    }),
+    }) ?? [],
     ...tweet.entities.media?.map?.((media) =>
       ({
         type: "media",
