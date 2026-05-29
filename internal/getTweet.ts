@@ -133,10 +133,10 @@ export interface RefTweet
 }
 
 export interface Entities {
-  hashtags: HashtagEntity[];
-  urls: UrlEntity[];
-  user_mentions: UserMentionEntity[];
-  symbols: SymbolEntity[];
+  hashtags?: HashtagEntity[];
+  urls?: UrlEntity[];
+  user_mentions?: UserMentionEntity[];
+  symbols?: SymbolEntity[];
   media?: UrlEntity[];
 }
 
