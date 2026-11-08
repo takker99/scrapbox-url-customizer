@@ -1,4 +1,5 @@
-import { getGyazoToken, uploadToGCS } from "@cosense/std/rest";
+import { getGyazoToken } from "@cosense/std/rest";
+import { uploadToGCS } from "@cosense/std/unstable-procedure";
 import { upload } from "@takker/gyazo";
 import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import { uploadToGyazoGIF } from "./uploadVideo.ts";
